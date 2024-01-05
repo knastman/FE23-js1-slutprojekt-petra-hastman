@@ -207,21 +207,12 @@ function displayMovieorPerson(movieOrPerson){
       articleImage.src = imgScrBase+fileSize+imgUrlPath; 
     }
     articleHeader.innerText = articleHeaderTitle;
-
-  }//Stora forloopen slut
+  }
 }
-
-          function toHoursAndMinutes(totalMinutes) {
-            const hours = Math.floor(totalMinutes / 60);
-            const minutes = totalMinutes % 60;
-            return { hours, minutes };
-          }
-
-
 
 
 function displayMovieDetails(movie){
-  
+
   const movieDetails = document.querySelector('#movieDetails');
   hideElements(allSections);
   movieDetails.classList.remove("hide");
@@ -251,11 +242,33 @@ function displayMovieDetails(movie){
   movieDiv2.append(factsContainer);
   movieDiv2.append(director, overview, homepage, movieImg);
 
+  fileSize = 'original'; 
+  posterImg.src = imgScrBase+fileSize+movie.poster_path;
+
+  factsContainer.append(releaseDate, genresContainer,runTime );
+  factsContainer.classList.add('factsContainer');
+  genresContainer.classList.add('genresContainer');
+
+  movieHeader.innerText = movie.title;
+  tagline.innerText = movie.tagline;
+  
+  overview.innerText =  movie.overview;
+  homepage.innerText =  movie.homepage;
+  releaseDate.innerText = movie.release_date;
+  runTime.innerText = movie.runtime + ' minutes';
+  
+  
+  const genresArray = movie.genres;
+  for (const genre of genresArray){
+    const genres = document.createElement('p');
+    genresContainer.append(genres);
+    genres.innerText = genre.name;
+  }
+
   fileSize = 'w780'; 
   movieImg.src = imgScrBase+fileSize+movie.backdrop_path;
 
-  fileSize = 'original'; 
-  posterImg.src = imgScrBase+fileSize+movie.poster_path;
+  /****** CAST & CREW ******/
 
   const castArray = movie.credits.cast;
   const crewArray = movie.credits.crew;
@@ -268,43 +281,7 @@ function displayMovieDetails(movie){
     }
   }
 
-  factsContainer.append(releaseDate, genresContainer,runTime );
-  factsContainer.classList.add('factsContainer');
-  genresContainer.classList.add('genresContainer');
-
-  const genresArray = movie.genres;
-  console.log(genresArray);
-
-  movieHeader.innerText = movie.title;
-  tagline.innerText = movie.tagline;
-  // h5.innerText = 'Release date';
   
- 
-  overview.innerText =  movie.overview;
-  homepage.innerText =  movie.homepage;
-  releaseDate.innerText = movie.release_date;
-  runTime.innerText = movie.runtime + ' minutes';
-  
-
-  // const runtimeInHoursMinutes = toHoursAndMinutes(movie.runtime);
-  // const runtimeHours = _.pluck(runtimeInHoursMinutes, 'hours'); 
-  // const runtimeMinutes = _.pluck(runtimeInHoursMinutes, 'minutes'); 
-
-  // console.log('runtimeInHoursMinutes');
-  // console.log(runtimeInHoursMinutes);
-  // console.log('runtimeHours');
-  // console.log(runtimeHours);
-  // console.log('runtimeMinutes');
-  // console.log(runtimeMinutes);
-
-  for (const genre of genresArray){
-    const genres = document.createElement('p');
-    genresContainer.append(genres);
-    genres.innerText = genre.name;
-  }
-
-  /****** CAST & CREW ******/
-
   const castDiv = document.createElement('div');
   const castHeader = document.createElement('h4');
   castHeader.innerText = 'Movie cast';
@@ -319,8 +296,6 @@ function displayMovieDetails(movie){
   const castUl = document.createElement('ul');
   castDiv.append(castHeader, castContainer, castContainer2);
   castContainer2.append(castUl);
-
-
 
   fileSize = 'w185';
   const nrOfMainActors = 4;
@@ -381,7 +356,7 @@ function removePrevLists(){
 
 
 /********************************************
-   Error
+   Error messages
 *********************************************/
 
 function displayError(error) {
