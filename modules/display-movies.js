@@ -101,8 +101,6 @@ function displayMovieorPerson(movieOrPerson){
 
   const nextButton = document.querySelector('#nextPage');
   const prevButton = document.querySelector('#prevPage');
-  // const pageButtons = document.querySelector('#pageButtons');
-  // pageButtons.classList.add("pageButtons");
 
   if (currentPage<totalPages) {
     nextButton.style.display = 'block';
@@ -113,12 +111,10 @@ function displayMovieorPerson(movieOrPerson){
     nextButton.value = currentPage + 1;
 
     if (currentPage>1) {
-      // prevButton.style.display = 'block';
       prevButton.classList.remove("faded")
       prevButton.value = currentPage - 1;
     }
     else if (currentPage==1) {
-      // prevButton.style.display = 'none';
       prevButton.classList.add("faded");
     }
   }
@@ -127,7 +123,6 @@ function displayMovieorPerson(movieOrPerson){
     prevButton.style.display = 'none';
   }
   else {
-    // nextButton.style.display = 'none';
     nextButton.classList.add("faded");
   }
 
