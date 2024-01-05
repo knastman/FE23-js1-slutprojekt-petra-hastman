@@ -1,18 +1,14 @@
-const allSections = document.querySelectorAll('section');
-// const mainAside = document.querySelector('#mainAside');
-
 const imgScrBase = 'https://image.tmdb.org/t/p/';
 let fileSize = 'original'; 
-const listAmount = 10; 
+const movieListAmount = 10; 
 
-
+const allSections = document.querySelectorAll('section');
 
 /*********************************
   Hide sections  
 **********************************/
 
 function hideElements(array){
-  // element.forEach((id) => id.style.display = 'none'); //FUNGERAR
   array.forEach((element) => element.classList.add("hide"));
 }
 
@@ -33,7 +29,7 @@ function popularBtnImg(movies){
 
 function setButtonBgImage(movies, element) {
   fileSize = 'w300';
-  const randomMovieIndex = Math.floor( _.random(0, (listAmount-1))); 
+  const randomMovieIndex = Math.floor( _.random(0, (movieListAmount-1))); 
   const ImgSrc = movies.results[randomMovieIndex].backdrop_path;
   element.style.backgroundImage = `url(${imgScrBase}${fileSize}${ImgSrc})`;
 };
@@ -47,33 +43,21 @@ function displayMovieList(movies){
   const movieListSection = document.querySelector('#movieList');
   hideElements(allSections);
   movieListSection.classList.remove("hide");
-
-  for (const movie of movies.results.slice(0, listAmount) ){
+  fileSize = 'w185';
+  for (const movie of movies.results.slice(0, movieListAmount) ){
     const movieArticle = document.createElement('article');
     const movieHeader = document.createElement('h3');
     const movieImg = document.createElement('img');
     const releaseDate = document.createElement('p');
-    const detailsButton = document.createElement('button');
-    
-    
+   
     movieListContainer.append(movieArticle);
-    movieArticle.append(movieImg, movieHeader,releaseDate, detailsButton);
-    
-    fileSize = 'w185';
-    // const imgUrl = imgScrBase+fileSize+movie.backdrop_path;
-    movieArticle.setAttribute("id", movie.id);
+    movieArticle.append(movieImg, movieHeader,releaseDate);
 
     movieHeader.innerText = movie.title;
     releaseDate.innerText = 'Release date: ' + movie.release_date;
-    // movieImg.src = imgScrBase+fileSize+movie.backdrop_path;
-    movieImg.src = imgScrBase+fileSize+movie.poster_path;
-    
-    // movieArticle.classList.add('details');
-    // movieImg.setAttribute("id", movie.id);
-
-    detailsButton.classList.add('details');
-    detailsButton.innerText = 'More info >>';
-    detailsButton.setAttribute("id", movie.id);
+    movieImg.src = imgScrBase + fileSize + movie.poster_path;
+    movieArticle.setAttribute("id", movie.id);
+    movieImg.setAttribute("id", movie.id);
   }
 }
 
@@ -82,28 +66,18 @@ function displayMovieList(movies){
 Tredning movies (for startpage)
 **********************************/
 
-
 function displayTrendingMovies(movies){
-  console.log(movies.results);
   const startGrid = document.querySelector("#startGrid");
-  // hideElements(allSections);
-  // startSection.classList.remove("hide");
   fileSize = 'w500';
 
   for (const movie of _.shuffle(movies.results) ){
     const movieId = movie.id;
-    // console.log(movieId);
     const gridDiv = document.createElement('div');
     const startImg = document.createElement('img');
     startGrid.append(gridDiv);
     gridDiv.append(startImg);
-    
-
     startImg.src = imgScrBase+fileSize+movie.poster_path;
-    startImg.classList.add('detailsClick');
     startImg.setAttribute("id", movieId);
-    
-    // const imgUrl = movies.results[randomMovieIndex].backdrop_path;
   }
 }
 
@@ -157,11 +131,7 @@ function displayMovieorPerson(movieOrPerson){
     nextButton.classList.add("faded");
   }
 
-  // const searchResultHeader = document.createElement('h2');
-  // searchResultHeader.innerText = 'Search Results';
-  // resultContainer.append(searchResultHeader);
   const flexContainer = document.createElement('div');
-  // resultContainer.append(flexContainer);
 
   for (const movie of resultArray ){
     const resultArticle = document.createElement('article');
@@ -173,36 +143,27 @@ function displayMovieorPerson(movieOrPerson){
     const articleDiv = document.createElement('div'); 
     resultArticle.append(articleDiv);
     articleDiv.append(articleHeader, articleImage);
+    articleImage.setAttribute("id", movie.id);
     
     let articleHeaderTitle = '';
     let imgUrlPath = '';
-    // let asideMovieHeaderTitle = '';
   
     const mediaType = movie.media_type;
     const movieId = movie.id;
     
-    
     if ((mediaType == 'movie')||(mediaType == 'tv')) {
       const releaseDate = document.createElement('p');
       const overview = document.createElement('p');
-      const detailsButton = document.createElement('button');
       imgUrlPath = movie.backdrop_path;
       fileSize = 'w1280';
 
-      articleDiv.append(releaseDate, overview, detailsButton);
-      resultArticle.append(detailsButton);
+      articleDiv.append(releaseDate, overview);
+  
       resultArticle.setAttribute("id", movieId);
 
       articleHeaderTitle = movie.title;
       releaseDate.innerText = 'Release date: '+ movie.release_date;
       overview.innerText = movie.overview;
-      
-      detailsButton.classList.add('details');
-      detailsButton.innerText = 'More info >>';
-      detailsButton.setAttribute("id", movieId);
-      
-      // mainAside.append(asideMovieHeader);
-      // asideMovieHeader.innerText= movie.title;
 
       if (mediaType == 'tv'){
         articleHeaderTitle = movie.name;
@@ -215,10 +176,8 @@ function displayMovieorPerson(movieOrPerson){
       const knownForHeader = document.createElement('h4');
       const knownForDepartment = document.createElement('p');
       const personInfo = document.createElement('div');
-      // resultArticle.append(knownForDepartment);
       resultArticle.append(personInfo);
       
-
       fileSize = 'w300';
       imgUrlPath = movie.profile_path;
       articleHeaderTitle = movie.name;
@@ -247,15 +206,9 @@ function displayMovieorPerson(movieOrPerson){
     if (imgUrlPath != null){
       articleImage.src = imgScrBase+fileSize+imgUrlPath; 
     }
-
-   
     articleHeader.innerText = articleHeaderTitle;
-    
-    const mediaTypeP = document.createElement('p');
-    // resultArticle.append(mediaTypeP);
-    // mediaTypeP.innerText = mediaType +' ' + movieId;
 
-  }//Stora forsatsen slut
+  }//Stora forloopen slut
 }
 
           function toHoursAndMinutes(totalMinutes) {
@@ -268,11 +221,6 @@ function displayMovieorPerson(movieOrPerson){
 
 
 function displayMovieDetails(movie){
-  // console.log(movie);
-  // console.log(toHoursAndMinutes(117));
- 
-  // const pageButtons = document.querySelector('#pageButtons');
-  // pageButtons.style.display = 'none';
   
   const movieDetails = document.querySelector('#movieDetails');
   hideElements(allSections);
@@ -293,12 +241,7 @@ function displayMovieDetails(movie){
   const factsContainer = document.createElement('div');
   const genresContainer = document.createElement('div');
   const runTime = document.createElement('p');
-  
-  const castDiv = document.createElement('div');
-  const castHeader = document.createElement('h4');
   const director = document.createElement('h6');
-  // const div = document.createElement('div');
-  // const h5 = document.createElement('h5');
 
   movieDetailsContainer.append(movieDivContainer);
   movieDivContainer.classList.add('movieInfo');
@@ -314,25 +257,16 @@ function displayMovieDetails(movie){
   fileSize = 'original'; 
   posterImg.src = imgScrBase+fileSize+movie.poster_path;
 
-
   const castArray = movie.credits.cast;
   const crewArray = movie.credits.crew;
-  // console.log(crewArray);
-  for (const person of crewArray){
-    
-    // console.log('person');
-    // console.log(person);
-    // console.log(person.job);
 
+  for (const person of crewArray){
     if(person.job == 'Director'){
-      console.log(person);
       console.log('director i ifsatsen');
-      console.log(person.name);
+
       director.innerText = 'Director: '+ person.name;
-      
     }
   }
-
 
   factsContainer.append(releaseDate, genresContainer,runTime );
   factsContainer.classList.add('factsContainer');
@@ -369,15 +303,14 @@ function displayMovieDetails(movie){
     genres.innerText = genre.name;
   }
 
+  /****** CAST & CREW ******/
 
-  // homepage.innerHtml = '<h5>Homepage:</h5> movie.homepage';
-
-
-
-  /****** CAST ***** */
-
+  const castDiv = document.createElement('div');
+  const castHeader = document.createElement('h4');
+  castHeader.innerText = 'Movie cast';
   movieDetailsContainer.append(castDiv);
   castDiv.classList.add('movieCast');
+
   const castContainer = document.createElement('div');
   const castContainer2 = document.createElement('div');
   castContainer.classList.add('castContainer');
@@ -387,21 +320,11 @@ function displayMovieDetails(movie){
   castDiv.append(castHeader, castContainer, castContainer2);
   castContainer2.append(castUl);
 
-  castHeader.innerText = 'Movie cast';
-
-  // castDiv.append(divCointenerRest);
-  // divCointenerRest.classList.add('divCointenerRest');
-
-  // fileSize = 'w500';
-  // const imgUrl = imgScrBase+fileSize+movie.backdrop_path;
-  // movieArticle.setAttribute("id", movie.id);
-
 
 
   fileSize = 'w185';
-
-
   const nrOfMainActors = 4;
+
   for (const person of castArray.slice(0, nrOfMainActors)){
   // for (const person of mainActors){
     const personDiv = document.createElement('div');
@@ -435,8 +358,6 @@ function displayMovieDetails(movie){
     characterName.innerText =  person.character;
     personli.innerText = person.name + ' - ' + person.character;
   }
-
-
 }
 
 
@@ -444,7 +365,6 @@ function displayMovieDetails(movie){
 /*********************************
   Clear results 
 **********************************/
-
 
 function removePrevLists(){
   
@@ -456,11 +376,7 @@ function removePrevLists(){
 
   const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
   movieDetailsContainer.innerHTML = '';
-  
-  // movieListHeader.style.display = 'none';
 
-  // const errorContainer = document.querySelector('#errorContainer');
-  // errorContainer.classList.add('hide');
 }
 
 
@@ -479,7 +395,7 @@ function displayError(error) {
   // const h3ErrorMess = document.createElement('h3');
 
   if (error === 404) { 
-    message = 'No search results found. Try another query.';
+    message = 'No results found. Try again.';
   }
   else{ 
     message = 'Something went wrong, try again later.' 
@@ -491,88 +407,8 @@ function displayError(error) {
 }
 
 
-/*********************************
-    Exports
-**********************************/
 
-  export{topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson,displayTrendingMovies, removePrevLists , displayMovieDetails, displayError};
-  // export{setButtonBgImage, displayMovieList, displayMovies, removePrevLists};
+export{topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson,displayTrendingMovies, removePrevLists , displayMovieDetails, displayError};
+
   
 
-
-  // function createAndAppendElement(type, content, container){
-  //   const el = document.createElement(type);
-  //   container.append(el);
-  
-  //   if(type === 'img') el.src = content;
-  //   else el.innerText = content;
-  
-  //   return el;
-  // }
-
-  // function topOrpopularChosen(ratedChoice){
-  //   const buttonChoice = document.querySelector(ratedChoice);
-  //   return buttonChoice;
-  // }
-
-
-
-  // for (let i=0; i<movieArray.results.length; i++ ){
-  //   const movieArticle = document.createElement('article');
-  //   const movieHeader = document.createElement('h3');
-  //   const movieImg = document.createElement('img');
-  //   const releaseDate = document.createElement('p');
-  //   const imgScrBase = 'https://image.tmdb.org/t/p/original/';
-    
-  //   // document.body.append(movieArticle);
-  //   moviesContainer.append(movieArticle);
-  //   movieArticle.append( movieHeader, movieImg, releaseDate);
-
-  //   movieHeader.innerText = movieArray.results[i].original_title;
-  //   movieImg.src = imgScrBase+movieArray.results[i].backdrop_path;
-  //   releaseDate.innerText = movieArray.results[i].release_date;
-
-  // }
-
-
-
-/********
- EXTRA EVENTUELLT
- ********/
-
-
-//  function displayMovie(movieId){
-
-
-//  }
-
-
-
-  /************FUNKAR EJ******** */
-
-  // for (const movie of movies){  
-  //   const movieArticle = document.createElement('article');
-  //   const movieHeader = document.createElement('h3');
-  //   const movieImg = document.createElement('img');
-  //   const releaseDate = document.createElement('p');
-  //   const imgScrBase = 'https://image.tmdb.org/t/p/original/';
-    
-  //   // document.body.append(movieArticle);
-  //   movieListContainer.append(movieArticle);
-  //   movieArticle.append( movieHeader, movieImg, releaseDate);
-
-  //   movieHeader.innerText = movies.result[i].title;
-  //   movieImg.src = imgScrBase+movies.movie[i].backdrop_path;
-  //   releaseDate.innerText = movies.movie[i].release_date;
-
-  // }
-
-
-
-
-    // const mainActors =  creditsArray.slice(0, nrOfMainActors);
-  // console.log('mainActors 3');
-  // console.log(mainActors);
-  // const restOfActors =_.rest(creditsArray,nrOfMainActors );
-  // console.log('rest');
-  // console.log(restOfActors);
