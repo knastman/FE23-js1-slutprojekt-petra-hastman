@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/3a14b5ad60.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700&family=Kalam:wght@300;400;700&family=Red+Hat+Display:wght@300;400;500;600;700&family=Tilt+Neon&display=swap" rel="stylesheet">
+
+  <script type='module' src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js" defer></script>
+  <link href="./css/style.css" rel="stylesheet" />
+  <title>Slutprojekt Javascript 1 - Movie Database</title>
+</head>
+<body>
+  <header>
+    <h1>Search for movies or people</h1>
+    <div id="searchContainer" class="search-container">
+      <form id="searchForm">
+        <input type="text" placeholder="Movies or people" id="searchQuery" name="MovieOrPerson">
+    
+        <button id="search-button">Search</button>
+      </form> 
+     </div>
+  </header>
+
+  <main>
+    <div id="wrapper">
+      <section id="startSection">
+        <h2>Movies and people - tredning</h2>
+        <div id="startGrid">
+
+        </div>
+      </section>
+      
+      <section id="errorContainer" class="hide">
+        <h2 id="errorMessage"></h2>
+      </section>    
+      
+      <section id="movieList" class="hide">
+        <h2 id="movieListHeader">Top rated movies/Popular movies</h2>
+        <div id="movieListContainer">
+          <!-- Movie lists are shown here -->
+        </div>
+      </section>
+
+      <section id="searchresult" class="hide">
+        <!-- <h2 id="searchResultHeader">Search results</h2> -->
+        <div id="resultContainer">
+          <!-- Search reasult is shown here -->
+        </div>
+        <div id="pageButtons">
+          <button id="prevPage" value="1"><i class="fa-solid fa-angles-left"></i> Previous page</button> 
+          <button id="nextPage" value="2">Next page <i class="fa-solid fa-angles-right"></i></button>
+        </div>
+      </section>
+        
+      <section id="movieDetails" class="hide">
+        <div id="movieDetailsContainer">
+          <!-- Movie lists are shown here  -->
+        </div>
+      </section>
+      
+
+
+      <aside id="mainAside" class="searchAside">
+        <h3>Movie lists</h3>
+        <div id="movie-list-buttons">
+          <button id="buttonTopRated" value ="top_rated" name="Top rated movies">Top rated movies</button>
+    
+          <button id="buttonPopular" value="popular" name="Popular movies">Popular movies</button>
+        </div> 
+        </aside>
+    </div>
+
+  </main>
+  <footer class="main-footer"> &copy; Petra Hastman | API - <a href="https://www.themoviedb.org/">TMDB, The Movie Database</a></footer>
+</body>
+</html>
