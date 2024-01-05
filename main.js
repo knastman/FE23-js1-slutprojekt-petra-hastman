@@ -79,16 +79,13 @@ function formSubmit(event){
 
   searchQuery = document.querySelector('#searchQuery').value.trim();
  
-  // searchResultHeader.style.display = 'block';
   fetchMoviesOrPerson(searchQuery, 1)
     .then(displayMovieorPerson)
     .catch(displayError);
- 
+
   form.reset();
 };
 
-
-/****** PAGINATION for search ************* */
 
 const nextButton = document.querySelector('#nextPage');
 const prevButton = document.querySelector('#prevPage');
@@ -118,7 +115,7 @@ const startGrid = document.querySelector('#startGrid');
 
 resultContainer.addEventListener('click', getMovieDetails);
 movieListContainer.addEventListener('click', getMovieDetails);
-startGrid.addEventListener('click', getMovieDetails); // Vaför funkar inte denna?
+startGrid.addEventListener('click', getMovieDetails);
 
 
 function getMovieDetails(event){
@@ -134,5 +131,4 @@ function getMovieDetails(event){
   fetchMovieDetails(movieId)
   .then (displayMovieDetails)
   .catch(displayError);
-
 }
