@@ -189,9 +189,15 @@ header{
   justify-content: space-between;
   /* border-bottom: 1px solid #cc; */
   /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
+
 }
+#resultContainer article:hover{
+  opacity: 0.90;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+}
+
 
 
 /* .movie-card{
@@ -485,9 +491,8 @@ background-color:#7a979a;
   padding-bottom:10px;
   /* background-color:honeydew; */
   background-color: #f0f4f4;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
+ 
   /* padding:10px 0; */
   /* border-bottom: 1px solid #D0CFCE; */
   /* background-color: #f0f4f4; */
@@ -497,6 +502,13 @@ background-color:#7a979a;
   align-items: center;
   
 }
+
+#movieListContainer article:hover{
+  opacity: 0.70;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+}
+
 
 #movieListContainer article h3{
   font-size: 1.1em;
