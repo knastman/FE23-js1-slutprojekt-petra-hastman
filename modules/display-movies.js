@@ -355,14 +355,10 @@ function removePrevLists(){
 *********************************************/
 
 function displayError(error) {
-  console.log('errormeddelande');
-  console.log(error);
   let message;
-
   const errorContainer = document.querySelector('#errorContainer');
   hideElements(allSections);
   errorContainer.classList.remove('hide');
-  // const h3ErrorMess = document.createElement('h3');
 
   if (error === 404) { 
     message = 'No results found. Try again.';
