@@ -96,12 +96,6 @@ prevButton.addEventListener('click', changePage);
 function changePage(event){
   removePrevLists();
   const currentPage = event.target.value;
-
-  console.log('currentPage i main');
-  console.log(currentPage);
-  // const searchQuery = document.querySelector('#searchQuery').value;
-  console.log('searchQuery');
-  console.log(searchQuery);
  
   fetchMoviesOrPerson(searchQuery, currentPage)
     .then(displayMovieorPerson)
