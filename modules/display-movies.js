@@ -270,8 +270,6 @@ function displayMovieDetails(movie){
 
   for (const person of crewArray){
     if(person.job == 'Director'){
-      console.log('director i ifsatsen');
-
       director.innerText = 'Director: '+ person.name;
     }
   }
