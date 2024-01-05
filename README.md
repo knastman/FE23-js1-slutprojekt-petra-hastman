@@ -1,4 +1,3 @@
-# FE23-js1-slutprojekt-petra-hastman
 ## JavaScript 1 - Slutprojekt - The Movie DataBase
 
 #### Projekt på utbildningen:
