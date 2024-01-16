@@ -67,7 +67,22 @@ async function fetchMovieDetails(movieId){
   else throw 'error';
 }
 
-export {fetchMovieList,fetchMoviesOrPerson, fetchTrendingMovies, fetchMovieDetails };
+async function fetchPersonDetails(personId){
+  const url =`https://api.themoviedb.org/3/person/${personId}?&append_to_response=credits`;
+  const response = await fetch(url, options);
+
+  if(response.ok){ 
+    const data = await response.json();
+    if(data.total_results == 0){
+      throw 404;
+    }
+    console.log(data);
+    return data;
+  }
+  else throw 'error';
+}
+
+export {fetchMovieList,fetchMoviesOrPerson, fetchTrendingMovies, fetchMovieDetails, fetchPersonDetails };
 
 
 

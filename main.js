@@ -20,8 +20,8 @@
 */
 
 
-import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails } from './modules/fetch-movies.js'; 
-import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayError} from './modules/display-movies.js'; 
+import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails, fetchPersonDetails } from './modules/fetch-movies.js'; 
+import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayPersonDetails, displayError} from './modules/display-movies.js'; 
 
 
 
@@ -112,6 +112,10 @@ movieListContainer.addEventListener('click', getMovieDetails);
 startGrid.addEventListener('click', getMovieDetails);
 
 
+/*********************************
+        Details
+**********************************/
+
 function getMovieDetails(event){
   const targetArticle = event.target.closest('article');
   let movieId = '';
@@ -124,5 +128,23 @@ function getMovieDetails(event){
   }
   fetchMovieDetails(movieId)
   .then (displayMovieDetails)
+  .catch(displayError);
+}
+
+
+
+function getPersonDetails(event){
+  const targetArticle = event.target.closest('article');
+  let personId = '';
+  // if(event.target.tagName === 'IMG'){    
+  //   personId = event.target.getAttribute('id');
+  // }
+  // else 
+  if(targetArticle.tagName === 'ARTICLE') {  
+    personId = targetArticle.getAttribute('id');
+
+  }
+  fetchPersonDetails(personId)
+  .then (displayPersonDetails)
   .catch(displayError);
 }
