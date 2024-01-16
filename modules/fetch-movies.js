@@ -61,6 +61,7 @@ async function fetchMovieDetails(movieId){
     if(data.total_results == 0){
       throw 404;
     }
+    console.log(data);
     return data;
   }
   else throw 'error';
