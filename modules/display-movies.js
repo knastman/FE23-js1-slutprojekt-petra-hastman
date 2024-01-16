@@ -286,9 +286,9 @@ function displayMovieDetails(movie){
   castContainer.classList.add('castContainer');
   castContainer2.classList.add('castContainer2');
 
-  const castUl = document.createElement('ul');
+  // const castUl = document.createElement('ul');
   castDiv.append(castHeader, castContainer, castContainer2);
-  castContainer2.append(castUl);
+  // castContainer2.append(castUl);
 
   fileSize = 'w185';
   const nrOfMainActors = 4;
@@ -311,6 +311,7 @@ function displayMovieDetails(movie){
   }
 
   for (const person of _.rest(castArray,nrOfMainActors )){
+   
     const personDiv = document.createElement('div');
     const personli = document.createElement('li');
     const personImg = document.createElement('img');
@@ -318,13 +319,14 @@ function displayMovieDetails(movie){
     const castName = document.createElement('h5');
     const characterName = document.createElement('p');
 
-    castUl.append(personli);
+    // castUl.append(personli);
+    castContainer2.append(personDiv);
     castNameDiv.append(castName, characterName);
 
     personImg.src = imgScrBase+fileSize+person.profile_path;
     castName.innerText =  person.name;
     characterName.innerText =  person.character;
-    personli.innerText = person.name + ' - ' + person.character;
+    personDiv.innerText = person.name + ' - ' + person.character;
   }
 }
 

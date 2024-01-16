@@ -115,7 +115,7 @@ header{
   display: flex;
   justify-content: center;
   gap: 20px;
-  width: 95%;
+  width: 98vw;
   max-width: 1290px;
   margin:0 auto;
 }
@@ -260,7 +260,7 @@ header{
   justify-content:center;
   gap:15px;
   background-color: #f0f4f4;
-  max-width:910px;
+  /* max-width:910px; */
 }
 
 .movieInfo{
@@ -276,7 +276,8 @@ header{
   gap:10px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  margin:0 0 10px 0;
+  /* margin:0 0 10px 0; */
+
 }
 
 .movieInfo p {
@@ -292,16 +293,21 @@ header{
 
 
 .movieInfo > div:first-child {
-  max-width: 400px; 
+  max-width: 450px; 
 }
 .movieInfo > div:nth-child(2) {
   margin-top: 15px;
   padding-right:15px;
-  padding-bottom:5px;
+  /* padding-bottom:5px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   justify-content: space-between;
+}
+
+
+.movieInfo > div:nth-child(2) > img {
+  padding-right:-10px;
+  width:100%;
 }
 
 .movieInfo h4{
@@ -324,6 +330,8 @@ header{
   text-align: left;
 }
 
+
+/***** Cast *****/
 .movieCast {
   border-top:1px solid #ccc;
 }
@@ -334,9 +342,32 @@ header{
 
   padding:30px;
 }
-.castContainer2 div {
-  width:10%;
+
+/* .castContainer2 ul {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+} */
+
+.castContainer2 {
+  padding:15px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 10px;
+  row-gap: 8px;
+  /* border:1px solid #ccc; */
+  /* grid-template-rows: repeat(300px, auto-fit); */
+  /* padding:10px;
+  font-size:0.9em;
+  line-height: 1.9em; */
 }
+
+/* .castContainer2 div {
+  width:10%;
+} */
+
+
 .movieCast h4{
   margin:20px 0 0px 0;
 }
@@ -347,6 +378,8 @@ header{
 .castContainer p{
   margin:5px 0 10px 0;
 }
+
+
 
 
 
