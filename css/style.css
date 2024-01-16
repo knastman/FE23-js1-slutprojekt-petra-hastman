@@ -17,7 +17,7 @@ html {
 img{
   max-width:100%;
 }
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h5, h6{
 font-family: "Dosis", sans-serif;
 
 }
@@ -51,6 +51,11 @@ h4{
   font-size:1.2em;
   text-align: center;
 }
+
+h5{
+  margin:0;
+  font-size:1.1em;
+}
 p{
   margin:15px;
 }
@@ -67,7 +72,7 @@ a:hover {
 
 ul {
   margin: 0;
-  padding: 25px;
+  padding: 15px;
 }
 ul li{
   margin-bottom:4px;
@@ -163,8 +168,9 @@ header{
   width:49%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
+
 #resultContainer article:hover{
   opacity: 0.90;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -249,6 +255,25 @@ header{
 }
 #movieListContainer article img{
  padding-bottom:10px;
+}
+
+.flex-article{
+  display:flex;
+  flex-direction: row !important;
+  /* align-items: center; */
+  justify-content: space-evenly;
+}
+.flex-article > div{
+  width:45%;
+  letter-spacing: 1px;
+} 
+.flex-article div > div{
+  text-align: center;
+  margin:30px 0 25px 0;
+} 
+
+.medium{
+  font-weight: 700;
 }
 
 

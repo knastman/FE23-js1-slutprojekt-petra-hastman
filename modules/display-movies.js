@@ -138,13 +138,14 @@ function displayMovieorPerson(movieOrPerson){
     const articleDiv = document.createElement('div'); 
     resultArticle.append(articleDiv);
     articleDiv.append(articleHeader, articleImage);
-    articleImage.setAttribute("id", movie.id);
+    // articleImage.setAttribute("id", movie.id);
     
     let articleHeaderTitle = '';
     let imgUrlPath = '';
   
     const mediaType = movie.media_type;
-    const movieId = movie.id;
+    const id = movie.id;
+    resultArticle.setAttribute("id", id);
     
     if ((mediaType == 'movie')||(mediaType == 'tv')) {
       const releaseDate = document.createElement('p');
@@ -153,8 +154,6 @@ function displayMovieorPerson(movieOrPerson){
       fileSize = 'w1280';
 
       articleDiv.append(releaseDate, overview);
-  
-      resultArticle.setAttribute("id", movieId);
 
       articleHeaderTitle = movie.title;
       releaseDate.innerText = 'Release date: '+ movie.release_date;
@@ -166,19 +165,25 @@ function displayMovieorPerson(movieOrPerson){
       }
     }
 
+
+
+
+
     else if (mediaType == 'person'){
       const knownForList = document.createElement('ul');
-      const knownForHeader = document.createElement('h4');
-      const knownForDepartment = document.createElement('p');
+      const knownForHeader = document.createElement('h5');
+      const knownForDepartment = document.createElement('div');
       const personInfo = document.createElement('div');
       resultArticle.append(personInfo);
+
+      resultArticle.classList.add("flex-article");
       
       fileSize = 'w300';
       imgUrlPath = movie.profile_path;
       articleHeaderTitle = movie.name;
 
       personInfo.append(knownForDepartment);
-      knownForDepartment.innerText = 'Known for department: '+ movie.known_for_department;
+      knownForDepartment.innerHTML = '<h4>Department</h4> '+ movie.known_for_department;
       const knownForArray = movie.known_for;
       
       if (knownForArray != null){
@@ -189,10 +194,12 @@ function displayMovieorPerson(movieOrPerson){
           const mediatype = movieOrTv.media_type;
           knownForList.append(liKnownFor);
           if (mediatype == 'tv'){
-            liKnownFor.innerText = 'Tv: ' + movieOrTv.name;
+            // liKnownFor.innerText = 'Tv: ' + movieOrTv.name;
+            liKnownFor.innerHTML = '<span class="medium"> ' + movieOrTv.name + ' </span> (TV)';
           } 
           else if (mediatype == 'movie'){
             liKnownFor.innerText = 'Movie: '+ movieOrTv.title;
+            liKnownFor.innerHTML = '<span class="medium">'+ movieOrTv.title + '</span> (Movie)';
           }
         } 
       } 
