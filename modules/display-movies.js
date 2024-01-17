@@ -130,15 +130,17 @@ function displayMovieorPerson(movieOrPerson){
   // const flexContainer = document.createElement('div');
 
   for (const movie of resultArray ){
+    
     const resultArticle = document.createElement('article');
     resultContainer.append(resultArticle);
-
     const articleHeader = document.createElement('h3');
     const asideMovieHeader = document.createElement('h5');
     const articleImage = document.createElement('img'); 
     const articleDiv = document.createElement('div'); 
+  
+    resultArticle.append(articleHeader);
     resultArticle.append(articleDiv);
-    articleDiv.append(articleHeader, articleImage);
+    articleDiv.append(articleImage);
     articleImage.setAttribute("id", movie.id);
     
     let articleHeaderTitle = '';
@@ -180,9 +182,9 @@ function displayMovieorPerson(movieOrPerson){
       const personInfo = document.createElement('div');
       resultArticle.append(personInfo);
 
-      resultArticle.classList.add("person-article");
+      resultArticle.classList.add("personArticle");
       
-      fileSize = 'w300';
+      fileSize = 'w185'; //w300
       imgUrlPath = movie.profile_path;
       articleHeaderTitle = movie.name;
 
@@ -218,7 +220,7 @@ function displayMovieorPerson(movieOrPerson){
 
 
 /*********************************
-      Details
+      Details - Movie
 **********************************/
 
 
@@ -358,9 +360,9 @@ function displayMovieDetails(movie){
 
 
 
-
-
-/******** PERSON DETAILS******* */
+/*********************************
+      Details - Persom
+**********************************/
 
 function displayPersonDetails(person){
 
@@ -370,13 +372,12 @@ function displayPersonDetails(person){
 
   const personDetailsContainer = document.querySelector('#personDetailsContainer');
 
-  const movieDivContainer = document.createElement('div');
-  const movieDiv = document.createElement('div');
-  const movieDiv2 = document.createElement('div');
-
+  const personDivContainer = document.createElement('div');
+  const personDiv = document.createElement('div');
+  const personDiv2 = document.createElement('div');
   const nameHeader = document.createElement('h3');
   const personImg = document.createElement('img');
-  const birthDiv = document.createElement('div');
+  const factsDiv = document.createElement('div');
   const birthday = document.createElement('p');
   const placeOfBirth = document.createElement('p');
   const biography = document.createElement('p');
@@ -384,42 +385,42 @@ function displayPersonDetails(person){
   const department = document.createElement('h4');
 
 
-  personDetailsContainer.append(movieDivContainer);
-  movieDivContainer.classList.add('person-info');
-  movieDivContainer.append(movieDiv,movieDiv2);
-  movieDiv.append(personImg );
-  movieDiv2.append(nameHeader, department, birthDiv);
+  personDetailsContainer.append(personDivContainer);
+  personDivContainer.classList.add('personInfo');
+  personDivContainer.append(personDiv,personDiv2);
+  personDiv.append(personImg );
+  personDiv2.append(nameHeader, factsDiv);
   // birthDiv.append(placeOfBirth, birthday);
-  birthDiv.append(birthInfo);
-  movieDiv2.append(biography);
+  factsDiv.append(department, birthInfo);
+  personDiv2.append(biography);
 
   fileSize = 'original'; 
   personImg.src = imgScrBase+fileSize+person.profile_path;
 
   nameHeader.innerText = person.name;
-  department.innerText =  person.known_for_department;
+  department.innerText = 'Department: ' + person.known_for_department;
 
   birthday.innerText =  person.birthday;
   placeOfBirth.innerText = person.place_of_birth
-  birthInfo.innerHTML = '<span class="medium">Born:</span> '+person.birthday + ' - ' + person.place_of_birth;
+  birthInfo.innerHTML = '<span class="medium">Born:</span> '+ person.birthday + '  |  ' + person.place_of_birth;
   biography.innerText =  person.biography;
 
 
  /*** Movie list */
  
-  const movieListDiv = document.createElement('div');
-  const movieListHeader = document.createElement('h4');
-  movieListHeader.innerText = 'Starred in Movies:';
-  personDetailsContainer.append(movieListDiv);
-  movieListDiv.classList.add('movieslist');
-
-
   const moviesContainer = document.createElement('div');
-  const moviesContainer2 = document.createElement('div');
+  const movieListHeader = document.createElement('h4');
+  personDetailsContainer.append(moviesContainer);
   moviesContainer.classList.add('moviesContainer');
+
+  const movieListDiv = document.createElement('div');
+  const movieListDiv2 = document.createElement('div');
+  moviesContainer.append(movieListHeader, movieListDiv);
+  movieListHeader.innerText = person.name + ' - Movies';
+  movieListDiv.classList.add('movieslist');
   // moviesContainer2.classList.add('moviesContainer2');
 
-  moviesContainer.append(movieListHeader);
+
 
   fileSize = 'w185';
   const acctorMovielist = person.movie_credits.cast;
