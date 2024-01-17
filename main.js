@@ -165,7 +165,7 @@ function getMovieOrPersonDetails(event){
     
   }
 
-  if(articleClass === 'person-article'){
+  if(articleClass === 'personArticle'){
     console.log('This is a person');
 
     // if(event.target.tagName === 'IMG'){    
