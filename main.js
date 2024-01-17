@@ -116,7 +116,7 @@ movieListContainer.addEventListener('click', getMovieOrPersonDetails);
 startGrid.addEventListener('click', getMovieOrPersonDetails);
 movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
-castContainer.addEventListener('click', getMovieOrPersonDetails);
+// castContainer.addEventListener('click', getMovieOrPersonDetails);
 
 
 /*********************************

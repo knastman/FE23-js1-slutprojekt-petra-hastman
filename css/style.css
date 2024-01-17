@@ -196,6 +196,40 @@ header{
 
 
 
+
+/*************  SEARCH RESULT  - PERSON  **************/
+
+.personArticle {
+  display:flex;
+  flex-direction: row !important;
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
+}
+
+#personInfo p{
+  font-size: 0.9em;
+  margin:8px 0 8px 0;
+}
+
+.personArticle > div img{
+  width:100%;
+} 
+.personArticle div > div{
+  text-align: center;
+  margin:0 0 25px 0;
+  padding: 10px 0 10px 0;
+  border-bottom:1px solid #ccc;
+  border-top:1px solid #ccc;
+} 
+
+.personArticle > div{
+  width:47%;
+  letter-spacing: 1px;
+  padding:15px;
+} 
+
+
+
 /***** Pages buttons *****/
 
 #prevPage, #nextPage{
@@ -277,6 +311,9 @@ header{
 
 
 
+
+
+
 /************* DETAILS  MOVIE   **************/
 
 #movieDetailsContainer{
@@ -290,11 +327,10 @@ header{
 
 .movieInfo{
   display:flex;
-  justify-content:center;
-  justify-content: space-between;
-  gap:20px;
-  flex-wrap: wrap;
-}
+  /* justify-content:center;
+  justify-content: space-between; */
+  gap:25px;
+} 
 
 
 .factsContainer{
@@ -310,146 +346,6 @@ header{
 .movieInfo p {
   margin:1em 0 1em 0;
 }
-
-
-/*************  List  - PERSON  **************/
-
-.personArticle {
-  display:flex;
-  flex-direction: row !important;
-  /* align-items: center; */
-  /* justify-content: space-evenly; */
-}
-
-#personInfo p{
-  font-size: 0.9em;
-  margin:8px 0 8px 0;
-}
-
-.personArticle > div img{
-  width:100%;
-} 
-.personArticle div > div{
-  text-align: center;
-  margin:0 0 25px 0;
-  padding: 10px 0 10px 0;
-  border-bottom:1px solid #ccc;
-  border-top:1px solid #ccc;
-} 
-
-
-
-.personArticle > div{
-  width:47%;
-  letter-spacing: 1px;
-  padding:15px;
-} 
-
-
-
-/*************  DETAILS - PERSON  **************/
-
-
-.personInfo{
-  display:flex;
-  justify-content:center;
-  justify-content: space-between;
-  justify-content: flex-start;
-  gap:25px;
-  flex-wrap: wrap;
-}
-
-.personInfo > div:first-child {
-  width:49%;
-  max-width: 430px; 
-  padding:0;
-}
-
-.personInfo > div:nth-child(2) {
-  width:50%;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap:5px;
-  /* justify-content: space-between; */
-}
-
-.personInfo > div:nth-child(2) > p{
-  margin:0;
-  line-height: 1.45em;
-}
-
-.personInfo div > div{
-  text-align: center;
-  margin:10px 0 15px 0;
-  padding: 10px 0 10px 0;
-  border-bottom:1px solid #ccc;
-  border-top:1px solid #ccc;
-} 
-.personInfo div > div p{
-  margin:0;
-  margin-top:10px;
-}
-
-
-
-/***** MOVIE LISTS PERSON ******/
-
-.moviesContainer  {
-  margin-top:30px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  margin:10px 0 10px 0;
-}
-.moviesContainer h4{
-  text-align: center;
-  font-size: 1.5em;
-  padding:10px 0 10px 0;
-  margin:0 0 10px 0;
-}
- 
-/* .moviesContainer  div{
-  background-color: #93bac9;
-} */
-
-.movieslist{
-  display: flex;
-  justify-content:space-around;
-  gap:5px;
-  flex-wrap: wrap;
-}
-
-.movieslist article{
-  font-size: 1.1em;
-  padding-bottom:10px;
-  background-color: #f0f4f4;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-  display:flex;
-  flex-direction: column;
-  justify-content:space-between;
-  align-items: center;
-}
-
-.movieslist article:hover{
-  opacity: 0.70;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  cursor: pointer;
-}
-
-
-.movieslist article h5{
-  font-size: 1.1em;
-  white-space: wrap;
-  width:0;
-  min-width:100%;
-  text-align: center;
-
-}
-.movieslist img{
- padding-bottom:6px;
-}
-
-
 
 
 /* .movieInfo > div:first-child {
@@ -470,8 +366,8 @@ header{
 
 
 .movieInfo > div:first-child {
-  width:48%;
-  max-width: 430px; 
+  width:49.5%;
+  /* max-width: 430px;  */
 }
  /* .movieInfo > div:first-child img {
   height: 100%;
@@ -487,9 +383,6 @@ header{
   justify-content: space-between;
 }
 
-/* .movieInfo img{
-  width: 300px;
-} */
 
 /* .movieInfo > div:nth-child(2) > img {
   padding-right:-10px;
@@ -515,6 +408,9 @@ header{
   font-weight: 300;
   text-align: left;
 }
+
+
+
 
 
 /***** Cast *****/
@@ -564,6 +460,116 @@ header{
 .castContainer p{
   margin:5px 0 10px 0;
 }
+
+/*************  DETAILS - PERSON  **************/
+
+
+.personInfo{
+  display:flex;
+  justify-content:center;
+  justify-content: space-between;
+  justify-content: flex-start;
+  gap:25px;
+  flex-wrap: wrap;
+}
+
+.personInfo > div:first-child {
+  width:49%;
+  max-width: 430px; 
+  padding:0;
+}
+
+.personInfo > div:nth-child(2) {
+  width:50%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+  /* justify-content: space-between; */
+}
+
+.personInfo > div:nth-child(2) > p{
+  margin:0;
+  line-height: 1.45em;
+}
+
+.personInfo div > div{
+  text-align: center;
+  margin:10px 0 15px 0;
+  padding: 10px 0 10px 0;
+  border-bottom:1px solid #ccc;
+  border-top:1px solid #ccc;
+} 
+.personInfo div > div p{
+  margin:0;
+  margin-top:10px;
+}
+
+
+
+/***** PERSON - MOVIES ******/
+
+.moviesContainer  {
+  margin-top:30px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin:10px 0 10px 0;
+}
+.moviesContainer h4{
+  text-align: center;
+  font-size: 1.5em;
+  padding:10px 0 10px 0;
+  margin:0 0 10px 0;
+}
+ 
+/* .moviesContainer  div{
+  background-color: #93bac9;
+} */
+
+.movieslist{
+  display: flex;
+  justify-content:space-around;
+  gap:5px;
+  flex-wrap: wrap;
+}
+
+.movieslist article{
+  font-size: 1.1em;
+  padding-bottom:10px;
+  background-color: #f0f4f4;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap:8px;
+}
+
+
+
+.movieslist article:hover{
+  opacity: 0.70;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+}
+/* .movieslist img{
+  width:300px;
+} */
+
+.movieslist article h5{
+  font-size: 1em;
+  white-space: wrap;
+  width:0;
+  min-width:100%;
+  text-align: center;
+
+}
+.movieslist img{
+ padding-bottom:6px;
+ max-width:185px;
+}
+
+
+
 
 /***** Aside ****/
 
@@ -638,9 +644,20 @@ aside{
       flex-direction: column;
       gap: 20px;
   } */
+
+  .search-container{
+    width: 100%;
+  }
+
   #resultContainer article{
     width:100%;
   }
+
+
+  .movieInfo{
+    flex-wrap: wrap;
+  }
+  
 
 
 /***** Aside ****/
