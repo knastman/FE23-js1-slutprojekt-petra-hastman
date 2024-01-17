@@ -68,7 +68,7 @@ async function fetchMovieDetails(movieId){
 }
 
 async function fetchPersonDetails(personId){
-  const url =`https://api.themoviedb.org/3/person/${personId}?&append_to_response=credits`;
+  const url =`https://api.themoviedb.org/3/person/${personId}?&append_to_response=movie_credits`;
   const response = await fetch(url, options);
 
   if(response.ok){ 

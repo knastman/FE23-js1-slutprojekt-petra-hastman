@@ -57,7 +57,7 @@ h5{
   font-size:1.1em;
 }
 p{
-  margin:15px;
+  margin:15px 0 15px 0;
 }
 
 a {
@@ -257,20 +257,7 @@ header{
  padding-bottom:10px;
 }
 
-.flex-article{
-  display:flex;
-  flex-direction: row !important;
-  /* align-items: center; */
-  justify-content: space-evenly;
-}
-.flex-article > div{
-  width:45%;
-  letter-spacing: 1px;
-} 
-.flex-article div > div{
-  text-align: center;
-  margin:30px 0 25px 0;
-} 
+
 
 .medium{
   font-weight: 700;
@@ -291,8 +278,66 @@ header{
 .movieInfo{
   display:flex;
   justify-content:center;
+  justify-content: space-between;
   gap:20px;
+  flex-wrap: wrap;
 }
+
+
+
+
+.person-article {
+  display:flex;
+  flex-direction: row !important;
+  /* align-items: center; */
+  justify-content: space-evenly;
+}
+
+#person-info p{
+  font-size: 0.9em;
+  margin:8px 0 8px 0;
+}
+
+.person-article > div{
+  width:47%;
+  letter-spacing: 1px;
+} 
+.person-article div > div{
+  text-align: center;
+  margin:30px 0 25px 0;
+} 
+
+
+
+.person-info{
+  display:flex;
+  justify-content:center;
+  justify-content: space-between;
+  gap:10px;
+  flex-wrap: wrap;
+}
+
+.person-info > div:first-child {
+  width:45%;
+  max-width: 430px; 
+}
+
+.person-info > div:nth-child(2) {
+  width:50%;
+  margin-top: 15px;
+  padding-right:35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.person-info > div:nth-child(2) > p{
+  margin:0;
+}
+
+
+
 
 .factsContainer{
   display: flex;
@@ -302,12 +347,78 @@ header{
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   margin:0 0 10px 0;
-
 }
 
 .movieInfo p {
   margin:1em 0 1em 0;
 }
+
+/***** MOVIE LISTS PERSOn******/
+
+
+.movieslist{
+  margin-top:30px;
+
+}
+.movieslist{
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap:10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin:0 0 10px 0;
+}
+
+.movieslist{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.movieslist article{
+  font-size: 1.1em;
+  padding-bottom:10px;
+  background-color: #f0f4f4;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.movieslist article:hover{
+  opacity: 0.70;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+}
+
+
+.movieslist article h5{
+  font-size: 1.1em;
+  white-space: wrap;
+  width:0;
+  min-width:100%;
+  text-align: center;
+
+}
+.movieslist img{
+ padding-bottom:6px;
+}
+
+
+
+
+/* .movieInfo > div:first-child {
+  
+}  */
+
+/* .movieInfo > div > img:first-child {
+  height: 100%;
+} */
+
 .genresContainer{
   display: flex;
   justify-content: center;
@@ -318,9 +429,15 @@ header{
 
 
 .movieInfo > div:first-child {
-  max-width: 450px; 
+  width:48%;
+  max-width: 430px; 
 }
+ /* .movieInfo > div:first-child img {
+  height: 100%;
+}  */
+
 .movieInfo > div:nth-child(2) {
+  width:48%;
   margin-top: 15px;
   padding-right:15px;
   /* padding-bottom:5px; */
@@ -329,11 +446,14 @@ header{
   justify-content: space-between;
 }
 
+/* .movieInfo img{
+  width: 300px;
+} */
 
-.movieInfo > div:nth-child(2) > img {
+/* .movieInfo > div:nth-child(2) > img {
   padding-right:-10px;
-  width:100%;
-}
+
+} */
 
 .movieInfo h4{
   text-align: center;
@@ -364,9 +484,9 @@ header{
   display: flex;
   justify-content:space-between;
   gap:10px;
-
   padding:30px;
 }
+
 
 /* .castContainer2 ul {
   display:grid;
@@ -404,10 +524,21 @@ header{
   margin:5px 0 10px 0;
 }
 
-
-
-
-
+.moviesContainer  {
+  display: flex;
+  justify-content:space-around;
+  gap:5px;
+  
+  flex-wrap: wrap;
+}
+.moviesContainer  div h5{
+  text-align: center;
+  padding:10px 0 10px 0;
+}
+ 
+.moviesContainer  div{
+  background-color: #93bac9;
+}
 /***** Aside ****/
 
 aside{

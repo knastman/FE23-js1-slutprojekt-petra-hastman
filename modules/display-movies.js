@@ -76,6 +76,7 @@ function displayTrendingMovies(movies){
     const startImg = document.createElement('img');
     startGrid.append(gridDiv);
     gridDiv.append(startImg);
+    startImg.classList.add("startGridDiv");
     startImg.src = imgScrBase+fileSize+movie.poster_path;
     startImg.setAttribute("id", movieId);
   }
@@ -138,7 +139,7 @@ function displayMovieorPerson(movieOrPerson){
     const articleDiv = document.createElement('div'); 
     resultArticle.append(articleDiv);
     articleDiv.append(articleHeader, articleImage);
-    // articleImage.setAttribute("id", movie.id);
+    articleImage.setAttribute("id", movie.id);
     
     let articleHeaderTitle = '';
     let imgUrlPath = '';
@@ -146,8 +147,8 @@ function displayMovieorPerson(movieOrPerson){
     const mediaType = movie.media_type;
   
     
-    // const id = movie.id;
-    // resultArticle.setAttribute("id", id);
+    const id = movie.id;
+    resultArticle.setAttribute("id", id);
     
     
     if ((mediaType == 'movie')||(mediaType == 'tv')) {
@@ -158,7 +159,7 @@ function displayMovieorPerson(movieOrPerson){
       fileSize = 'w1280';
 
       articleDiv.append(releaseDate, overview);
-      resultArticle.setAttribute("id", movieId);
+      // resultArticle.setAttribute("id", movieId);
 
       articleHeaderTitle = movie.title;
       releaseDate.innerText = 'Release date: '+ movie.release_date;
@@ -170,20 +171,16 @@ function displayMovieorPerson(movieOrPerson){
       }
     }
 
-
-
-
-
     else if (mediaType == 'person'){
       const personId = movie.id;
-      resultArticle.setAttribute("id", personId);
+      resultArticle.setAttribute("personid", personId);
       const knownForList = document.createElement('ul');
       const knownForHeader = document.createElement('h5');
       const knownForDepartment = document.createElement('div');
       const personInfo = document.createElement('div');
       resultArticle.append(personInfo);
 
-      resultArticle.classList.add("flex-article");
+      resultArticle.classList.add("person-article");
       
       fileSize = 'w300';
       imgUrlPath = movie.profile_path;
@@ -226,6 +223,7 @@ function displayMovieorPerson(movieOrPerson){
 
 
 function displayMovieDetails(movie){
+  // console.log('Inne i moviedetails');
 
   const movieDetails = document.querySelector('#movieDetails');
   hideElements(allSections);
@@ -268,6 +266,7 @@ function displayMovieDetails(movie){
   
   overview.innerText =  movie.overview;
   homepage.innerText =  movie.homepage;
+  homepage.innerHTML =  '<a href="'+movie.homepage+'">' + movie.homepage +'</a>';
   releaseDate.innerText = movie.release_date;
   runTime.innerText = movie.runtime + ' minutes';
   
@@ -314,7 +313,9 @@ function displayMovieDetails(movie){
 
   for (const person of castArray.slice(0, nrOfMainActors)){
   // for (const person of mainActors){
-    const personDiv = document.createElement('div');
+
+  
+    const personDiv = document.createElement('article');
     const personImg = document.createElement('img');
     const castNameDiv = document.createElement('div');
     const castName = document.createElement('h5');
@@ -327,6 +328,12 @@ function displayMovieDetails(movie){
     personImg.src = imgScrBase+fileSize+person.profile_path;
     castName.innerText =  person.name;
     characterName.innerText =  person.character;
+
+
+    const personId = movie.id;
+    personDiv.setAttribute("id", personId);
+    const personImgId = movie.id;
+    personImg.setAttribute("id", personId);
   }
 
   for (const person of _.rest(castArray,nrOfMainActors )){
@@ -350,129 +357,266 @@ function displayMovieDetails(movie){
 }
 
 
-function displayPersonDetails(movie){
 
-  const movieDetails = document.querySelector('#movieDetails');
+
+
+/******** PERSON DETAILS******* */
+
+function displayPersonDetails(person){
+
+  const personDetails= document.querySelector('#personDetails');
   hideElements(allSections);
-  movieDetails.classList.remove("hide");
+  personDetails.classList.remove("hide");
 
-  const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
+  const personDetailsContainer = document.querySelector('#personDetailsContainer');
 
   const movieDivContainer = document.createElement('div');
   const movieDiv = document.createElement('div');
   const movieDiv2 = document.createElement('div');
-  const movieHeader = document.createElement('h3');
-  const releaseDate = document.createElement('p');
-  const movieImg = document.createElement('img');
-  const posterImg = document.createElement('img');
-  const tagline = document.createElement('h4');
-  const overview = document.createElement('p');
-  const homepage = document.createElement('p');
-  const factsContainer = document.createElement('div');
-  const genresContainer = document.createElement('div');
-  const runTime = document.createElement('p');
-  const director = document.createElement('h6');
 
-  movieDetailsContainer.append(movieDivContainer);
-  movieDivContainer.classList.add('movieInfo');
+  const nameHeader = document.createElement('h3');
+  const personImg = document.createElement('img');
+  const birthDiv = document.createElement('div');
+  const birthday = document.createElement('p');
+  const placeOfBirth = document.createElement('p');
+  const biography = document.createElement('p');
+  const birthInfo = document.createElement('p');
+  const department = document.createElement('h4');
+
+
+  personDetailsContainer.append(movieDivContainer);
+  movieDivContainer.classList.add('person-info');
   movieDivContainer.append(movieDiv,movieDiv2);
-  movieDiv.append(posterImg );
-  movieDiv2.append(movieHeader,tagline);
-  movieDiv2.append(factsContainer);
-  movieDiv2.append(director, overview, homepage, movieImg);
+  movieDiv.append(personImg );
+  movieDiv2.append(nameHeader, department, birthDiv);
+  // birthDiv.append(placeOfBirth, birthday);
+  birthDiv.append(birthInfo);
+  movieDiv2.append(biography);
 
   fileSize = 'original'; 
-  posterImg.src = imgScrBase+fileSize+movie.poster_path;
+  personImg.src = imgScrBase+fileSize+person.profile_path;
 
-  factsContainer.append(releaseDate, genresContainer,runTime );
-  factsContainer.classList.add('factsContainer');
-  genresContainer.classList.add('genresContainer');
+  nameHeader.innerText = person.name;
+  department.innerText =  person.known_for_department;
 
-  movieHeader.innerText = movie.title;
-  tagline.innerText = movie.tagline;
-  
-  overview.innerText =  movie.overview;
-  homepage.innerText =  movie.homepage;
-  releaseDate.innerText = movie.release_date;
-  runTime.innerText = movie.runtime + ' minutes';
-  
-  
-  const genresArray = movie.genres;
-  for (const genre of genresArray){
-    const genres = document.createElement('p');
-    genresContainer.append(genres);
-    genres.innerText = genre.name;
-  }
+  birthday.innerText =  person.birthday;
+  placeOfBirth.innerText = person.place_of_birth
+  birthInfo.innerHTML = '<span class="medium">Born:</span> '+person.birthday + ' - ' + person.place_of_birth;
+  biography.innerText =  person.biography;
 
-  fileSize = 'w780'; 
-  movieImg.src = imgScrBase+fileSize+movie.backdrop_path;
 
-  /****** CAST & CREW ******/
+ /*** Movie list */
+ 
+  const movieListDiv = document.createElement('div');
+  const movieListHeader = document.createElement('h4');
+  movieListHeader.innerText = 'Starred in Movies:';
+  personDetailsContainer.append(movieListDiv);
+  movieListDiv.classList.add('movieslist');
 
-  const castArray = movie.credits.cast;
-  const crewArray = movie.credits.crew;
 
-  for (const person of crewArray){
-    if(person.job == 'Director'){
-      director.innerText = 'Director: '+ person.name;
-    }
-  }
+  const moviesContainer = document.createElement('div');
+  const moviesContainer2 = document.createElement('div');
+  moviesContainer.classList.add('moviesContainer');
+  // moviesContainer2.classList.add('moviesContainer2');
 
-  
-  const castDiv = document.createElement('div');
-  const castHeader = document.createElement('h4');
-  castHeader.innerText = 'Movie cast';
-  movieDetailsContainer.append(castDiv);
-  castDiv.classList.add('movieCast');
-
-  const castContainer = document.createElement('div');
-  const castContainer2 = document.createElement('div');
-  castContainer.classList.add('castContainer');
-  castContainer2.classList.add('castContainer2');
-
-  // const castUl = document.createElement('ul');
-  castDiv.append(castHeader, castContainer, castContainer2);
-  // castContainer2.append(castUl);
+  moviesContainer.append(movieListHeader);
 
   fileSize = 'w185';
-  const nrOfMainActors = 4;
+  const acctorMovielist = person.movie_credits.cast;
 
-  for (const person of castArray.slice(0, nrOfMainActors)){
-  // for (const person of mainActors){
-    const personDiv = document.createElement('div');
-    const personImg = document.createElement('img');
-    const castNameDiv = document.createElement('div');
-    const castName = document.createElement('h5');
-    const characterName = document.createElement('p');
+  for (const movie of acctorMovielist){
+    const movieArticle = document.createElement('article');
+    const movieImg = document.createElement('img');
+    const movieName = document.createElement('h5');
 
-    castContainer.append(personDiv);
-    personDiv.append(personImg, castNameDiv);
-    castNameDiv.append(castName, characterName);
+    movieListDiv.append(movieArticle);
+    movieArticle.append(movieImg, movieName);
 
-    personImg.src = imgScrBase+fileSize+person.profile_path;
-    castName.innerText =  person.name;
-    characterName.innerText =  person.character;
+    movieName.innerText = movie.original_title;
+    movieImg.src = imgScrBase+fileSize+movie.poster_path;
+
+    movieArticle.setAttribute("id", movie.id);
+    movieImg.setAttribute("id", movie.id);
+
   }
 
-  for (const person of _.rest(castArray,nrOfMainActors )){
-   
-    const personDiv = document.createElement('div');
-    const personli = document.createElement('li');
-    const personImg = document.createElement('img');
-    const castNameDiv = document.createElement('div');
-    const castName = document.createElement('h5');
-    const characterName = document.createElement('p');
+ 
 
-    // castUl.append(personli);
-    castContainer2.append(personDiv);
-    castNameDiv.append(castName, characterName);
 
-    personImg.src = imgScrBase+fileSize+person.profile_path;
-    castName.innerText =  person.name;
-    characterName.innerText =  person.character;
-    personDiv.innerText = person.name + ' - ' + person.character;
-  }
+  
+  // const genresArray = movie.genres;
+  // for (const genre of genresArray){
+  //   const genres = document.createElement('p');
+  //   genresContainer.append(genres);
+  //   genres.innerText = genre.name;
+  // }
+
+  
 }
+
+// function displayMovieOrPersonDetails(movie){
+
+//   const movieDetails = document.querySelector('#movieDetails');
+//   hideElements(allSections);
+//   movieDetails.classList.remove("hide");
+
+//   const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
+//   const movieDivContainer = document.createElement('div');
+//   const movieDiv = document.createElement('div');
+//   const movieDiv2 = document.createElement('div');
+
+//   // if ((mediaType == 'movie')||(mediaType == 'tv')) {
+//     const releaseDate = document.createElement('p');
+//     const movieHeader = document.createElement('h3');
+//     const overview = document.createElement('p');
+    
+//     const movieImg = document.createElement('img');
+//     const posterImg = document.createElement('img');
+//     const tagline = document.createElement('h4');
+    
+//     const homepage = document.createElement('p');
+//     const factsContainer = document.createElement('div');
+//     const genresContainer = document.createElement('div');
+//     const runTime = document.createElement('p');
+//     const director = document.createElement('h6');
+  
+//     movieDetailsContainer.append(movieDivContainer);
+//     movieDivContainer.classList.add('movieInfo');
+//     movieDivContainer.append(movieDiv,movieDiv2);
+//     movieDiv.append(posterImg );
+//     movieDiv2.append(movieHeader,tagline);
+//     movieDiv2.append(factsContainer);
+//     movieDiv2.append(director, overview, homepage, movieImg);
+  
+//     fileSize = 'original'; 
+//     posterImg.src = imgScrBase+fileSize+movie.poster_path;
+  
+//     factsContainer.append(releaseDate, genresContainer,runTime );
+//     factsContainer.classList.add('factsContainer');
+//     genresContainer.classList.add('genresContainer');
+  
+//     movieHeader.innerText = movie.title;
+//     tagline.innerText = movie.tagline;
+    
+//     overview.innerText =  movie.overview;
+//     homepage.innerText =  movie.homepage;
+//     releaseDate.innerText = movie.release_date;
+//     runTime.innerText = movie.runtime + ' minutes';
+    
+
+//     // if (mediaType == 'tv'){
+//     //   articleHeaderTitle = movie.name;
+//     //   releaseDate.innerText = 'First aired: ' + movie.first_air_date;
+//     // }
+    
+
+//     const genresArray = movie.genres;
+//     for (const genre of genresArray){
+//       const genres = document.createElement('p');
+//       genresContainer.append(genres);
+//       genres.innerText = genre.name;
+//     }
+  
+//     fileSize = 'w780'; 
+//     movieImg.src = imgScrBase+fileSize+movie.backdrop_path;
+  
+//     /****** CAST & CREW ******/
+  
+//     const castArray = movie.credits.cast;
+//     const crewArray = movie.credits.crew;
+  
+//     for (const person of crewArray){
+//       if(person.job == 'Director'){
+//         director.innerText = 'Director: '+ person.name;
+//       }
+//     }
+  
+    
+//     const castDiv = document.createElement('div');
+//     const castHeader = document.createElement('h4');
+//     castHeader.innerText = 'Movie cast';
+//     movieDetailsContainer.append(castDiv);
+//     castDiv.classList.add('movieCast');
+  
+//     const castContainer = document.createElement('div');
+//     const castContainer2 = document.createElement('div');
+//     castContainer.classList.add('castContainer');
+//     castContainer2.classList.add('castContainer2');
+
+//     castDiv.append(castHeader, castContainer, castContainer2);
+   
+//     fileSize = 'w185';
+//     const nrOfMainActors = 4;
+  
+//     for (const person of castArray.slice(0, nrOfMainActors)){
+//       // for (const person of mainActors){
+//       const personDiv = document.createElement('div');
+//       const personImg = document.createElement('img');
+//       const castNameDiv = document.createElement('div');
+//       const castName = document.createElement('h5');
+//       const characterName = document.createElement('p');
+  
+//       castContainer.append(personDiv);
+//       personDiv.append(personImg, castNameDiv);
+//       castNameDiv.append(castName, characterName);
+  
+//       personImg.src = imgScrBase+fileSize+person.profile_path;
+//       castName.innerText =  person.name;
+//       characterName.innerText =  person.character;
+//     }
+  
+//     for (const person of _.rest(castArray,nrOfMainActors )){
+     
+//       const personDiv = document.createElement('div');
+//       const personli = document.createElement('li');
+//       const personImg = document.createElement('img');
+//       const castNameDiv = document.createElement('div');
+//       const castName = document.createElement('h5');
+//       const characterName = document.createElement('p');
+  
+//       // castUl.append(personli);
+//       castContainer2.append(personDiv);
+//       castNameDiv.append(castName, characterName);
+  
+//       personImg.src = imgScrBase+fileSize+person.profile_path;
+//       castName.innerText =  person.name;
+//       characterName.innerText =  person.character;
+//       personDiv.innerText = person.name + ' - ' + person.character;
+//     }
+
+
+
+
+
+
+//     // imgUrlPath = movie.backdrop_path;
+//     // fileSize = 'w1280';
+
+//     // articleDiv.append(releaseDate, overview);
+//     // // resultArticle.setAttribute("id", movieId);
+
+//     // articleHeaderTitle = movie.title;
+//     // releaseDate.innerText = 'Release date: '+ movie.release_date;
+//     // overview.innerText = movie.overview;
+
+
+
+    
+
+//   // }
+
+//   // else if (mediaType == 'person'){}
+
+
+
+
+ 
+ 
+
+// }
+
+
+
 
 
 

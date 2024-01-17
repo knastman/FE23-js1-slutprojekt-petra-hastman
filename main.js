@@ -103,48 +103,95 @@ function changePage(event){
 }
 
 
-const resultContainer = document.querySelector('#resultContainer');
+
 const movieListContainer = document.querySelector('#movieListContainer');
 const startGrid = document.querySelector('#startGrid');
+const resultContainer = document.querySelector('#resultContainer');
+const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
+const personDetailsContainer = document.querySelector('#personDetailsContainer');
+const castContainer = document.querySelector('castContainer');
 
-resultContainer.addEventListener('click', getMovieDetails);
-movieListContainer.addEventListener('click', getMovieDetails);
-startGrid.addEventListener('click', getMovieDetails);
+resultContainer.addEventListener('click', getMovieOrPersonDetails);
+movieListContainer.addEventListener('click', getMovieOrPersonDetails);
+startGrid.addEventListener('click', getMovieOrPersonDetails);
+movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
+personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
+castContainer.addEventListener('click', getMovieOrPersonDetails);
 
 
 /*********************************
         Details
 **********************************/
 
-function getMovieDetails(event){
+// function getMovieDetails(event){
+//   const targetArticle = event.target.closest('article');
+//   let movieId = '';
+//   if(event.target.tagName === 'IMG'){    
+//     movieId = event.target.getAttribute('id');
+//   }
+//   else if(targetArticle.tagName === 'ARTICLE') {  
+//       movieId = targetArticle.getAttribute('id');
+
+//   }
+//   fetchMovieDetails(movieId)
+//   .then (displayMovieDetails)
+//   .catch(displayError);
+// }
+
+
+
+function getMovieOrPersonDetails(event){
+  console.log(event);
+  console.log(event.target);
   const targetArticle = event.target.closest('article');
-  let movieId = '';
+  console.log('targetArticle');
+  console.log(targetArticle);
+  // console.log('articleClass');
+  // console.log(articleClass);
+  // const articleClass = '';
+
+  const articleClass = targetArticle.getAttribute('class');
+
+  let id = '';
+
   if(event.target.tagName === 'IMG'){    
-    movieId = event.target.getAttribute('id');
+    console.log('Detta är IMG');
+    id = event.target.getAttribute('id');
+    
   }
   else if(targetArticle.tagName === 'ARTICLE') {  
-      movieId = targetArticle.getAttribute('id');
+    id = targetArticle.getAttribute('id');
+   
+    
+  }
+
+  if(articleClass === 'person-article'){
+    console.log('This is a person');
+
+    // if(event.target.tagName === 'IMG'){    
+    //   id = event.target.getAttribute('id');
+    // }
+    // else if(targetArticle.tagName === 'ARTICLE') {  
+    //   id = targetArticle.getAttribute('id');
+    // }
+
+    fetchPersonDetails(id)
+    .then (displayPersonDetails)
+    // .catch(displayError);
 
   }
-  fetchMovieDetails(movieId)
-  .then (displayMovieDetails)
-  .catch(displayError);
-}
-
-
-
-function getPersonDetails(event){
-  const targetArticle = event.target.closest('article');
-  let personId = '';
-  // if(event.target.tagName === 'IMG'){    
-  //   personId = event.target.getAttribute('id');
-  // }
-  // else 
-  if(targetArticle.tagName === 'ARTICLE') {  
-    personId = targetArticle.getAttribute('id');
-
+  else{
+    // if(event.target.tagName === 'IMG'){    
+    //   id = event.target.getAttribute('id');
+    // }
+    // else if(targetArticle.tagName === 'ARTICLE') {  
+    //   id = targetArticle.getAttribute('id');
+    // }
+    console.log('I fetch movie else');
+    fetchMovieDetails(id)
+    .then (displayMovieDetails)
+    .catch(displayError);
   }
-  fetchPersonDetails(personId)
-  .then (displayPersonDetails)
-  .catch(displayError);
+
+
 }
