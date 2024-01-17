@@ -20,8 +20,8 @@
 */
 
 
-import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails } from './modules/fetch-movies.js'; 
-import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayError} from './modules/display-movies.js'; 
+import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails, fetchPersonDetails } from './modules/fetch-movies.js'; 
+import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayPersonDetails, displayError} from './modules/display-movies.js'; 
 
 
 
@@ -103,26 +103,95 @@ function changePage(event){
 }
 
 
-const resultContainer = document.querySelector('#resultContainer');
+
 const movieListContainer = document.querySelector('#movieListContainer');
 const startGrid = document.querySelector('#startGrid');
+const resultContainer = document.querySelector('#resultContainer');
+const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
+const personDetailsContainer = document.querySelector('#personDetailsContainer');
+const castContainer = document.querySelector('castContainer');
 
-resultContainer.addEventListener('click', getMovieDetails);
-movieListContainer.addEventListener('click', getMovieDetails);
-startGrid.addEventListener('click', getMovieDetails);
+resultContainer.addEventListener('click', getMovieOrPersonDetails);
+movieListContainer.addEventListener('click', getMovieOrPersonDetails);
+startGrid.addEventListener('click', getMovieOrPersonDetails);
+movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
+personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
+castContainer.addEventListener('click', getMovieOrPersonDetails);
 
 
-function getMovieDetails(event){
+/*********************************
+        Details
+**********************************/
+
+// function getMovieDetails(event){
+//   const targetArticle = event.target.closest('article');
+//   let movieId = '';
+//   if(event.target.tagName === 'IMG'){    
+//     movieId = event.target.getAttribute('id');
+//   }
+//   else if(targetArticle.tagName === 'ARTICLE') {  
+//       movieId = targetArticle.getAttribute('id');
+
+//   }
+//   fetchMovieDetails(movieId)
+//   .then (displayMovieDetails)
+//   .catch(displayError);
+// }
+
+
+
+function getMovieOrPersonDetails(event){
+  console.log(event);
+  console.log(event.target);
   const targetArticle = event.target.closest('article');
-  let movieId = '';
+  console.log('targetArticle');
+  console.log(targetArticle);
+  // console.log('articleClass');
+  // console.log(articleClass);
+  // const articleClass = '';
+
+  const articleClass = targetArticle.getAttribute('class');
+
+  let id = '';
+
   if(event.target.tagName === 'IMG'){    
-    movieId = event.target.getAttribute('id');
+    console.log('Detta är IMG');
+    id = event.target.getAttribute('id');
+    
   }
   else if(targetArticle.tagName === 'ARTICLE') {  
-      movieId = targetArticle.getAttribute('id');
+    id = targetArticle.getAttribute('id');
+   
+    
+  }
+
+  if(articleClass === 'person-article'){
+    console.log('This is a person');
+
+    // if(event.target.tagName === 'IMG'){    
+    //   id = event.target.getAttribute('id');
+    // }
+    // else if(targetArticle.tagName === 'ARTICLE') {  
+    //   id = targetArticle.getAttribute('id');
+    // }
+
+    fetchPersonDetails(id)
+    .then (displayPersonDetails)
+    // .catch(displayError);
 
   }
-  fetchMovieDetails(movieId)
-  .then (displayMovieDetails)
-  .catch(displayError);
+  else{
+    // if(event.target.tagName === 'IMG'){    
+    //   id = event.target.getAttribute('id');
+    // }
+    // else if(targetArticle.tagName === 'ARTICLE') {  
+    //   id = targetArticle.getAttribute('id');
+    // }
+    console.log('I fetch movie else');
+    fetchMovieDetails(id)
+    .then (displayMovieDetails)
+    .catch(displayError);
+  }
+
+
 }
