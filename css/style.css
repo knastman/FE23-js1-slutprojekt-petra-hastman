@@ -385,7 +385,6 @@ header{
   grid-template-rows: 1fr;
   column-gap: 10px;
   row-gap: 8px;
-
 }
 
 .movieCast h4{
@@ -397,6 +396,10 @@ header{
 }
 .castContainer p{
   margin:5px 0 10px 0;
+}
+
+.castContainer .personArticle img{
+  max-width: 185px;
 }
 
 /*************  DETAILS - PERSON  **************/
