@@ -1,28 +1,14 @@
 /*
 * Petra Hastman, 2023 
 * 
-* Search Movies/People & display Movie lists
+* Search Movies/People/Tv-series & display Movie lists
 * Uses the TMDB API - https://www.themoviedb.org/
-* 
-* Fetches lists for top rated movies or popular movies. 
-* Fetches movies, tv-series or people matching a user search.
-* Info displayed for each movie
-* - Image
-* - Title
-* - Release date
-* For searched movies it also displays
-* - Description/overview
-* For searched person it displays
-* - Name
-* - Image
-* - Department person is famous for
-* - List of movies/tv the person is most known for, includion mediatype
+*
 */
 
 
 import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails, fetchPersonDetails, fetchTvSeriesDetails } from './modules/fetch-movies.js'; 
 import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayPersonDetails, displayTVDetails, displayError} from './modules/display-movies.js'; 
-
 
 
 /*****************************************
@@ -86,7 +72,6 @@ function formSubmit(event){
   form.reset();
 };
 
-
 const nextButton = document.querySelector('#nextPage');
 const prevButton = document.querySelector('#prevPage');
 
@@ -118,6 +103,7 @@ movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 tvSeriesDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 
+
 /*********************************
         Details
 **********************************/
@@ -135,7 +121,7 @@ function getMovieOrPersonDetails(event){
   else if (targetArticle.matches('.tvSeriesArticle')){
     fetchTvSeriesDetails(id)
     .then (displayTVDetails)
-    // .catch(displayError);
+    .catch(displayError);
   }
   else{
     fetchMovieDetails(id)
