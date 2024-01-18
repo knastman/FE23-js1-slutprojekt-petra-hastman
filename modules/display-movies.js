@@ -322,10 +322,7 @@ function displayMovieDetails(movie){
   let imgUrl = '';
   let personId = '';
   for (const person of castArray.slice(0, nrOfMainActors)){
-  // for (const person of mainActors){
-
     const personDiv = document.createElement('article');
- 
     personDiv.classList.add("personArticle");
     
     const personImg = document.createElement('img');
@@ -343,17 +340,16 @@ function displayMovieDetails(movie){
     characterName.innerText =  person.character;
     personImg.src = imgScrBase+fileSize+imgUrl;
 
-    // console.log(imgUrl);
+    console.log(imgUrl);
     // if (imgUrlPath == null){
     //   personImg.src = './img/no-image.jpg';
     // }
     // else{
-    //   personImg.src = imgScrBase+fileSize+person.profile_path;
+    //    personImg.src = imgScrBase+fileSize+imgUrl;
     // }
 
     personId = person.id;
     personDiv.setAttribute("id", personId);
-    // personImg.setAttribute("id", personId);
   }
 
   
@@ -391,7 +387,6 @@ function displayPersonDetails(person){
   personDetails.classList.remove("hide");
 
   const personDetailsContainer = document.querySelector('#personDetailsContainer');
-
   const personDivContainer = document.createElement('div');
   const personDiv = document.createElement('div');
   const personDiv2 = document.createElement('div');
@@ -415,10 +410,8 @@ function displayPersonDetails(person){
 
   fileSize = 'original'; 
   personImg.src = imgScrBase+fileSize+person.profile_path;
-
   nameHeader.innerText = person.name;
   department.innerText = 'Department: ' + person.known_for_department;
-
   birthday.innerText =  person.birthday;
   placeOfBirth.innerText = person.place_of_birth
   birthInfo.innerHTML = '<span class="medium">Born:</span> '+ person.birthday + '  |  ' + person.place_of_birth;
@@ -426,21 +419,17 @@ function displayPersonDetails(person){
 
 
  /*** Movie list */
- 
+
   const moviesContainer = document.createElement('div');
   const movieListHeader = document.createElement('h4');
   personDetailsContainer.append(moviesContainer);
   moviesContainer.classList.add('moviesContainer');
 
   const movieListDiv = document.createElement('div');
-  const movieListDiv2 = document.createElement('div');
   moviesContainer.append(movieListHeader, movieListDiv);
   movieListHeader.innerText = person.name + ' - Movies';
   movieListDiv.classList.add('movieslist');
-  // moviesContainer2.classList.add('moviesContainer2');
-
-
-
+  
   fileSize = 'w185';
   const acctorMovielist = person.movie_credits.cast;
   let imgUrlPath = '';
@@ -463,21 +452,8 @@ function displayPersonDetails(person){
     else{
       movieImg.src = imgScrBase+fileSize+imgUrlPath;
     }
-
     movieArticle.setAttribute("id", movie.id);
-    // movieImg.setAttribute("id", movie.id);
-
   }
-
- 
-  // const genresArray = movie.genres;
-  // for (const genre of genresArray){
-  //   const genres = document.createElement('p');
-  //   genresContainer.append(genres);
-  //   genres.innerText = genre.name;
-  // }
-
-  
 }
 
 

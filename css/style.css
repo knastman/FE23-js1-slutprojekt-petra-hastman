@@ -83,6 +83,8 @@ ul li{
 }
 
 
+/********** HEADER **********/
+
 header{
   /* position: fixed; */
   margin-bottom: 2em;
@@ -118,7 +120,7 @@ header{
 }
 
 
-/****** Main starts *******/
+/****** Main *******/
 
 #wrapper{
   display: flex;
@@ -150,7 +152,7 @@ header{
 }
 
 
-/************ SEARCH RESULT **********/
+/************ SEARCH RESULT - ALL **********/
 
 #resultContainer {
   display: flex;
@@ -173,15 +175,7 @@ header{
 }
 #resultContainer article h3{
   width: 100%;
-  /* justify-content: space-between; */
 }
-
-/* #resultContainer .personArticle:first-child{
-  width:49%;
-} */
-/* #resultContainer article:first-child{
-  width:100%;
-} */
 
 #resultContainer article:hover{
   opacity: 0.90;
@@ -191,35 +185,14 @@ header{
 
 #resultContainer article p{
   margin:10px 10px 5px 10px;
-  /* justify-content: space-between; */
 }
-
-
 
 
 /*************  SEARCH RESULT  - PERSON  **************/
 
-.personArticle {
-
-}
-
-#personInfo p{
-  font-size: 0.9em;
-  margin:8px 0 8px 0;
-}
-
-
-
 .personArticleSearch {
   display:flex;
   flex-direction: row !important;
-  /* align-items: center; */
-  /* justify-content: space-evenly; */
-}
-
-#personInfo p{
-  font-size: 0.9em;
-  margin:8px 0 8px 0;
 }
 
 .personArticleSearch > div img{
@@ -321,10 +294,6 @@ header{
 
 
 
-
-
-
-
 /************* DETAILS  MOVIE   **************/
 
 #movieDetailsContainer{
@@ -333,13 +302,10 @@ header{
   justify-content:center;
   gap:15px;
   background-color: #f0f4f4;
-  /* max-width:910px; */
 }
 
 .movieInfo{
   display:flex;
-  /* justify-content:center;
-  justify-content: space-between; */
   gap:25px;
 } 
 
@@ -358,47 +324,27 @@ header{
   margin:1em 0 1em 0;
 }
 
-
-/* .movieInfo > div:first-child {
-  
-}  */
-
-/* .movieInfo > div > img:first-child {
-  height: 100%;
-} */
-
 .genresContainer{
   display: flex;
   justify-content: center;
   justify-content: space-between;
   gap:10px;
-  
 }
 
 
 .movieInfo > div:first-child {
   width:49.5%;
-  /* max-width: 430px;  */
 }
- /* .movieInfo > div:first-child img {
-  height: 100%;
-}  */
+
 
 .movieInfo > div:nth-child(2) {
   width:48%;
   margin-top: 15px;
   padding-right:15px;
-  /* padding-bottom:5px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
-
-/* .movieInfo > div:nth-child(2) > img {
-  padding-right:-10px;
-
-} */
 
 .movieInfo h4{
   text-align: center;
@@ -421,9 +367,6 @@ header{
 }
 
 
-
-
-
 /***** Cast *****/
 .movieCast {
   border-top:1px solid #ccc;
@@ -435,13 +378,6 @@ header{
   padding:30px;
 }
 
-
-/* .castContainer2 ul {
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-} */
-
 .castContainer2 {
   padding:15px;
   display:grid;
@@ -449,17 +385,8 @@ header{
   grid-template-rows: 1fr;
   column-gap: 10px;
   row-gap: 8px;
-  /* border:1px solid #ccc; */
-  /* grid-template-rows: repeat(300px, auto-fit); */
-  /* padding:10px;
-  font-size:0.9em;
-  line-height: 1.9em; */
+
 }
-
-/* .castContainer2 div {
-  width:10%;
-} */
-
 
 .movieCast h4{
   margin:20px 0 0px 0;
@@ -473,7 +400,6 @@ header{
 }
 
 /*************  DETAILS - PERSON  **************/
-
 
 .personInfo{
   display:flex;
@@ -496,12 +422,6 @@ header{
   display: flex;
   flex-direction: column;
   gap:5px;
-  /* justify-content: space-between; */
-}
-
-.personInfo > div:nth-child(2) > p{
-  margin:0;
-  line-height: 1.45em;
 }
 
 .personInfo div > div{
@@ -511,9 +431,11 @@ header{
   border-bottom:1px solid #ccc;
   border-top:1px solid #ccc;
 } 
-.personInfo div > div p{
-  margin:0;
-  margin-top:10px;
+
+.personInfo p{
+  line-height: 1.45em;
+  font-size: 0.95em;
+  margin:8px 0 0px 0;
 }
 
 
@@ -532,10 +454,6 @@ header{
   padding:10px 0 10px 0;
   margin:0 0 10px 0;
 }
- 
-/* .moviesContainer  div{
-  background-color: #93bac9;
-} */
 
 .movieslist{
   display: flex;
@@ -555,16 +473,11 @@ header{
   gap:8px;
 }
 
-
-
 .movieslist article:hover{
   opacity: 0.70;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   cursor: pointer;
 }
-/* .movieslist img{
-  width:300px;
-} */
 
 .movieslist article h5{
   font-size: 1em;
@@ -578,7 +491,6 @@ header{
  padding-bottom:6px;
  max-width:185px;
 }
-
 
 
 
@@ -622,6 +534,8 @@ aside{
 
 
 
+
+/***** FOOTER ************/
 
 .main-footer{
   background-color:aliceblue;
@@ -702,10 +616,6 @@ aside{
     max-width:100px;
    }
 
-   /* .movieInfo > div:first-child{
-  
-   } */
-  
 
   /***** Aside ****/
 
