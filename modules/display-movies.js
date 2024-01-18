@@ -232,7 +232,6 @@ function displayMovieorPerson(movieOrPerson){
 
 
 function displayMovieDetails(movie){
-  // console.log('Inne i moviedetails');
 
   const movieDetails = document.querySelector('#movieDetails');
   hideElements(allSections);
@@ -312,17 +311,14 @@ function displayMovieDetails(movie){
   const castContainer2 = document.createElement('div');
   castContainer.classList.add('castContainer');
   castContainer2.classList.add('castContainer2');
-
-  // const castUl = document.createElement('ul');
   castDiv.append(castHeader, castContainer, castContainer2);
-  // castContainer2.append(castUl);
-
+  
   fileSize = 'w185';
   const nrOfMainActors = 6;
-  let imgUrl = '';
-  let personId = '';
+  let imgUrlPathPerson = '';
   for (const person of castArray.slice(0, nrOfMainActors)){
     const personDiv = document.createElement('article');
+    personDiv.classList.add("personArticle");
     personDiv.classList.add("personArticle");
     
     const personImg = document.createElement('img');
@@ -334,22 +330,24 @@ function displayMovieDetails(movie){
     personDiv.append(personImg, castNameDiv);
     castNameDiv.append(castName, characterName);
 
-    imgUrl = person.profile_path;
+    imgUrlPathPerson = person.profile_path;
     
     castName.innerText =  person.name;
     characterName.innerText =  person.character;
-    personImg.src = imgScrBase+fileSize+imgUrl;
+    personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
 
-    console.log(imgUrl);
-    // if (imgUrlPath == null){
-    //   personImg.src = './img/no-image.jpg';
-    // }
-    // else{
-    //    personImg.src = imgScrBase+fileSize+imgUrl;
-    // }
+    console.log(imgUrlPathPerson);
 
-    personId = person.id;
-    personDiv.setAttribute("id", personId);
+    if (imgUrlPathPerson == null){
+      personImg.src = './img/no-image.jpg';
+    }
+    else{
+      personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
+    }
+
+
+    personDiv.setAttribute("id", person.id);
+
   }
 
   
@@ -362,7 +360,6 @@ function displayMovieDetails(movie){
     const castName = document.createElement('h5');
     const characterName = document.createElement('p');
 
-    // castUl.append(personli);
     castContainer2.append(personDiv);
     castNameDiv.append(castName, characterName);
     personImg.src = imgScrBase+fileSize+person.profile_path;
@@ -404,7 +401,6 @@ function displayPersonDetails(person){
   personDivContainer.append(personDiv,personDiv2);
   personDiv.append(personImg );
   personDiv2.append(nameHeader, factsDiv);
-  // birthDiv.append(placeOfBirth, birthday);
   factsDiv.append(department, birthInfo);
   personDiv2.append(biography);
 
