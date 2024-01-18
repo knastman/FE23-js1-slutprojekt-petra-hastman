@@ -635,6 +635,9 @@ function removePrevLists(){
   const personDetailsContainer = document.querySelector('#personDetailsContainer');
   personDetailsContainer.innerHTML = '';
 
+  const tvSeriesDetailsContainer = document.querySelector('#tvSeriesDetailsContainer');
+  tvSeriesDetailsContainer.innerHTML = '';
+
 }
 
 

@@ -108,13 +108,15 @@ const startGrid = document.querySelector('#startGrid');
 const resultContainer = document.querySelector('#resultContainer');
 const movieDetailsContainer = document.querySelector('#movieDetailsContainer');
 const personDetailsContainer = document.querySelector('#personDetailsContainer');
-const castContainer = document.querySelector('castContainer');
+const tvSeriesDetailsContainer = document.querySelector('#tvSeriesDetailsContainer');
+// const castContainer = document.querySelector('castContainer');
 
 resultContainer.addEventListener('click', getMovieOrPersonDetails);
 movieListContainer.addEventListener('click', getMovieOrPersonDetails);
 startGrid.addEventListener('click', getMovieOrPersonDetails);
 movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
+tvSeriesDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 
 /*********************************
         Details
