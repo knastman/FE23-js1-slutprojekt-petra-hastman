@@ -103,7 +103,6 @@ function changePage(event){
 }
 
 
-
 const movieListContainer = document.querySelector('#movieListContainer');
 const startGrid = document.querySelector('#startGrid');
 const resultContainer = document.querySelector('#resultContainer');
@@ -116,63 +115,25 @@ movieListContainer.addEventListener('click', getMovieOrPersonDetails);
 startGrid.addEventListener('click', getMovieOrPersonDetails);
 movieDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
-// castContainer.addEventListener('click', getMovieOrPersonDetails);
-
 
 /*********************************
         Details
 **********************************/
 
-// function getMovieDetails(event){
-//   const targetArticle = event.target.closest('article');
-//   let movieId = '';
-//   if(event.target.tagName === 'IMG'){    
-//     movieId = event.target.getAttribute('id');
-//   }
-//   else if(targetArticle.tagName === 'ARTICLE') {  
-//       movieId = targetArticle.getAttribute('id');
-
-//   }
-//   fetchMovieDetails(movieId)
-//   .then (displayMovieDetails)
-//   .catch(displayError);
-// }
-
-
-
 function getMovieOrPersonDetails(event){
   removePrevLists();
   const targetArticle = event.target.closest('article');
-
-  let id = '';
-
-  if(event.target.tagName === 'IMG'){    
-    console.log('Detta är IMG');
-    id = event.target.getAttribute('id');
-  }
-
-  if(targetArticle.tagName === 'ARTICLE') {  
-    id = targetArticle.getAttribute('id');
-    
-    
-
-  }
-
+  const id = targetArticle.getAttribute('id');
  
   if (targetArticle.matches('.personArticle')){
-    console.log('This is a person');
-
     fetchPersonDetails(id)
     .then (displayPersonDetails)
     .catch(displayError);
-
   }
   else{
-    console.log('I fetch movie else');
     fetchMovieDetails(id)
     .then (displayMovieDetails)
     .catch(displayError);
   }
-
 
 }
