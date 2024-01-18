@@ -1,7 +1,6 @@
 const imgScrBase = 'https://image.tmdb.org/t/p/';
 let fileSize = 'original'; 
 const movieListAmount = 10; 
-
 const allSections = document.querySelectorAll('section');
 
 /*********************************
@@ -11,7 +10,6 @@ const allSections = document.querySelectorAll('section');
 function hideElements(array){
   array.forEach((element) => element.classList.add("hide"));
 }
-
 
 /*********************************
   Set image in Top rated/Popular   
@@ -57,7 +55,6 @@ function displayMovieList(movies){
     releaseDate.innerText = 'Release date: ' + movie.release_date;
     movieImg.src = imgScrBase + fileSize + movie.poster_path;
     movieArticle.setAttribute("id", movie.id);
-    // movieImg.setAttribute("id", movie.id);
   }
 }
 
@@ -87,7 +84,6 @@ function displayTrendingMovies(movies){
 /*********************************
       Search results
 **********************************/
-
 
 function displayMovieorPerson(movieOrPerson){  
   console.log(movieOrPerson.results);
@@ -215,7 +211,6 @@ function displayMovieorPerson(movieOrPerson){
           }
         } 
       } 
-
     } 
     if (imgUrlPath != null){
       articleImage.src = imgScrBase+fileSize+imgUrlPath; 
@@ -344,10 +339,7 @@ function displayMovieDetails(movie){
     else{
       personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
     }
-
-
     personDiv.setAttribute("id", person.id);
-
   }
 
   
