@@ -402,8 +402,6 @@ header{
 .castContainer article{
   max-width: 155px;
   cursor: pointer;
-  background-color:#D0CFCE;
-  background-color:#e4e2e2;
   background-color:#e1ece9;
 }
 .castContainer article:hover{
@@ -416,6 +414,13 @@ header{
   white-space: wrap;
 }
 
+.castContainer2 article{
+  cursor: pointer;
+}
+.castContainer2 article:hover{
+  color:#5b7c7e;
+  text-decoration: underline;
+}
 
 /*************  DETAILS - TV  **************/
 

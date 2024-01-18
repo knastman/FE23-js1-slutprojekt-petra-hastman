@@ -297,7 +297,6 @@ function displayMovieDetails(movie){
     }
   }
 
-  
   const castDiv = document.createElement('div');
   const castHeader = document.createElement('h4');
   castHeader.innerText = 'Movie cast';
@@ -314,17 +313,17 @@ function displayMovieDetails(movie){
   const nrOfMainActors = 6;
   let imgUrlPathPerson = '';
   for (const person of castArray.slice(0, nrOfMainActors)){
-    const personDiv = document.createElement('article');
-    personDiv.classList.add("personArticle");
-    personDiv.classList.add("personArticle");
+    const personArticle = document.createElement('article');
+    personArticle.classList.add("personArticle");
+    
     
     const personImg = document.createElement('img');
     const castNameDiv = document.createElement('div');
     const castName = document.createElement('h5');
     const characterName = document.createElement('p');
 
-    castContainer.append(personDiv);
-    personDiv.append(personImg, castNameDiv);
+    castContainer.append(personArticle);
+    personArticle.append(personImg, castNameDiv);
     castNameDiv.append(castName, characterName);
 
     imgUrlPathPerson = person.profile_path;
@@ -339,27 +338,27 @@ function displayMovieDetails(movie){
     else{
       personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
     }
-    personDiv.setAttribute("id", person.id);
+    personArticle.setAttribute("id", person.id);
   }
 
   
   for (const person of _.rest(castArray,nrOfMainActors )){
    
-    const personDiv = document.createElement('div');
-    const personli = document.createElement('li');
+    const personArticle = document.createElement('article');
+    personArticle.classList.add("personArticle");
     const personImg = document.createElement('img');
     const castNameDiv = document.createElement('div');
     const castName = document.createElement('h5');
     const characterName = document.createElement('p');
 
-    castContainer2.append(personDiv);
+    castContainer2.append(personArticle);
     castNameDiv.append(castName, characterName);
     personImg.src = imgScrBase+fileSize+person.profile_path;
 
-
     castName.innerText =  person.name;
     characterName.innerText =  person.character;
-    personDiv.innerText = person.name + ' - ' + person.character;
+    personArticle.innerText = person.name + ' - ' + person.character;
+    personArticle.setAttribute("id", person.id);
   }
 }
 
