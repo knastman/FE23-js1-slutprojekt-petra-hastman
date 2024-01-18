@@ -82,7 +82,23 @@ async function fetchPersonDetails(personId){
   else throw 'error';
 }
 
-export {fetchMovieList,fetchMoviesOrPerson, fetchTrendingMovies, fetchMovieDetails, fetchPersonDetails };
+
+async function fetchTvSeriesDetails(tvId){
+  const url =`https://api.themoviedb.org/3/tv/${tvId}?append_to_response=credits`;
+  const response = await fetch(url, options);
+
+  if(response.ok){ 
+    const data = await response.json();
+    if(data.total_results == 0){
+      throw 404;
+    }
+    console.log(data);
+    return data;
+  }
+  else throw 'error';
+}
+
+export {fetchMovieList,fetchMoviesOrPerson, fetchTrendingMovies, fetchMovieDetails, fetchPersonDetails, fetchTvSeriesDetails };
 
 
 

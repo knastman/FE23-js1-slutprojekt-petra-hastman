@@ -20,8 +20,8 @@
 */
 
 
-import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails, fetchPersonDetails } from './modules/fetch-movies.js'; 
-import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayPersonDetails, displayError} from './modules/display-movies.js'; 
+import {fetchMovieList, fetchMoviesOrPerson, fetchTrendingMovies,fetchMovieDetails, fetchPersonDetails, fetchTvSeriesDetails } from './modules/fetch-movies.js'; 
+import {topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson, removePrevLists, displayTrendingMovies, displayMovieDetails, displayPersonDetails, displayTVDetails, displayError} from './modules/display-movies.js'; 
 
 
 
@@ -129,6 +129,11 @@ function getMovieOrPersonDetails(event){
     fetchPersonDetails(id)
     .then (displayPersonDetails)
     .catch(displayError);
+  }
+  else if (targetArticle.matches('.tvSeriesArticle')){
+    fetchTvSeriesDetails(id)
+    .then (displayTVDetails)
+    // .catch(displayError);
   }
   else{
     fetchMovieDetails(id)
