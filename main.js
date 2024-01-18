@@ -141,52 +141,33 @@ personDetailsContainer.addEventListener('click', getMovieOrPersonDetails);
 
 
 function getMovieOrPersonDetails(event){
-  console.log(event);
-  console.log(event.target);
+  removePrevLists();
   const targetArticle = event.target.closest('article');
-  console.log('targetArticle');
-  console.log(targetArticle);
-  // console.log('articleClass');
-  // console.log(articleClass);
-  // const articleClass = '';
-
-  const articleClass = targetArticle.getAttribute('class');
 
   let id = '';
 
   if(event.target.tagName === 'IMG'){    
     console.log('Detta är IMG');
     id = event.target.getAttribute('id');
-    
   }
-  else if(targetArticle.tagName === 'ARTICLE') {  
+
+  if(targetArticle.tagName === 'ARTICLE') {  
     id = targetArticle.getAttribute('id');
-   
     
+    
+
   }
 
-  if(articleClass === 'personArticle'){
+ 
+  if (targetArticle.matches('.personArticle')){
     console.log('This is a person');
-
-    // if(event.target.tagName === 'IMG'){    
-    //   id = event.target.getAttribute('id');
-    // }
-    // else if(targetArticle.tagName === 'ARTICLE') {  
-    //   id = targetArticle.getAttribute('id');
-    // }
 
     fetchPersonDetails(id)
     .then (displayPersonDetails)
-    // .catch(displayError);
+    .catch(displayError);
 
   }
   else{
-    // if(event.target.tagName === 'IMG'){    
-    //   id = event.target.getAttribute('id');
-    // }
-    // else if(targetArticle.tagName === 'ARTICLE') {  
-    //   id = targetArticle.getAttribute('id');
-    // }
     console.log('I fetch movie else');
     fetchMovieDetails(id)
     .then (displayMovieDetails)
