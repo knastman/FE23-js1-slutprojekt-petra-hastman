@@ -166,6 +166,7 @@ function displayMovieorPerson(movieOrPerson){
       if (mediaType == 'tv'){
         articleHeaderTitle = movie.name;
         releaseDate.innerText = 'First aired: ' + movie.first_air_date;
+        resultArticle.classList.add("tvSeriesArticle");
       }
     }
 
@@ -178,6 +179,7 @@ function displayMovieorPerson(movieOrPerson){
       const personInfo = document.createElement('div');
       resultArticle.append(personInfo);
 
+      
       resultArticle.classList.add("personArticle");
       resultArticle.classList.add("personArticleSearch");
       
@@ -331,8 +333,6 @@ function displayMovieDetails(movie){
     characterName.innerText =  person.character;
     personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
 
-    console.log(imgUrlPathPerson);
-
     if (imgUrlPathPerson == null){
       personImg.src = './img/no-image.jpg';
     }
@@ -361,6 +361,177 @@ function displayMovieDetails(movie){
     characterName.innerText =  person.character;
     personDiv.innerText = person.name + ' - ' + person.character;
   }
+}
+
+
+
+/*********************************
+      Details - TV
+**********************************/
+
+
+function displayTVDetails(tvSeries){
+
+  const tvDetails = document.querySelector('#tvSeriesDetails');
+  hideElements(allSections);
+  tvDetails.classList.remove("hide");
+
+  const tvDetailsContainer = document.querySelector('#tvSeriesDetailsContainer');
+
+  const tvDivContainer = document.createElement('div');
+  const tvDiv = document.createElement('div');
+  const tvDiv2 = document.createElement('div');
+  const tvHeader = document.createElement('h3');
+  const firstAiredDate = document.createElement('p');
+  const nrOfEpisodes = document.createElement('p');
+  const nrOfSeasons = document.createElement('p');
+  const seasonsEpisodes = document.createElement('p');
+  const tvSeriesImg = document.createElement('img');
+  const posterImg = document.createElement('img');
+  const tagline = document.createElement('h4');
+  const overview = document.createElement('p');
+  const homepage = document.createElement('p');
+  const factsContainer = document.createElement('div');
+  const genresContainer = document.createElement('div');
+  const runTime = document.createElement('p');
+  const director = document.createElement('h6');
+
+  tvDetailsContainer.append(tvDivContainer);
+  tvDivContainer.classList.add('tvInfo');
+  tvDivContainer.append(tvDiv,tvDiv2);
+  tvDiv.append(posterImg);
+  tvDiv2.append(tvHeader,tagline);
+  tvDiv2.append(factsContainer);
+  tvDiv2.append(overview, homepage,tvSeriesImg);
+  tvDiv2.append(seasonsEpisodes, homepage,tvSeriesImg);
+
+  fileSize = 'original'; 
+  posterImg.src = imgScrBase+fileSize+tvSeries.poster_path;
+  
+  factsContainer.append(firstAiredDate, genresContainer, runTime );
+  factsContainer.classList.add('factsContainer');
+  genresContainer.classList.add('genresContainer');
+
+  tvHeader.innerText = tvSeries.name;
+  tagline.innerText = tvSeries.tagline;
+  nrOfSeasons.innerText = 'Seasons: ' + tvSeries.number_of_seasons;
+  nrOfEpisodes.innerText = 'Episodes: ' +  tvSeries.number_of_episodes;
+  seasonsEpisodes.innerText = 'Seasons: ' + tvSeries.number_of_seasons + ' - Episodes: ' +  tvSeries.number_of_episodes;
+  
+
+  overview.innerText =  tvSeries.overview;
+  homepage.innerText =  tvSeries.homepage;
+  homepage.innerHTML =  '<a href="'+ tvSeries.homepage +'">' + tvSeries.homepage +'</a>';
+  firstAiredDate.innerText = 'First aired: '+ tvSeries.first_air_date;
+  runTime.innerText = tvSeries.episode_run_time + ' minutes/episode';
+  
+  tvSeriesImg.src = imgScrBase+fileSize+tvSeries.backdrop_path;
+
+  const genresArray = tvSeries.genres;
+  for (const genre of genresArray){
+    const genres = document.createElement('p');
+    genresContainer.append(genres);
+    genres.innerText = genre.name;
+  }
+
+  
+  /****** Cast ******/
+
+
+    const castDiv = document.createElement('div');
+    const castHeader = document.createElement('h4');
+    castHeader.innerText = tvSeries.name + ' - cast';
+    tvDetailsContainer.append(castDiv);
+    castDiv.classList.add('movieCast');
+
+    const castContainer = document.createElement('div');
+    const castContainer2 = document.createElement('div');
+    castContainer.classList.add('castContainer');
+    castContainer2.classList.add('castContainer2');
+    castDiv.append(castHeader, castContainer, castContainer2);
+
+
+    const castArray = tvSeries.credits.cast;
+    fileSize = 'w185';
+    // const nrOfMainActors = 6;
+    let imgUrlPathPerson = '';
+    for (const person of castArray){
+      const personArticle = document.createElement('article');
+      personArticle.classList.add("personArticle");
+      
+      const personImg = document.createElement('img');
+      const castNameDiv = document.createElement('div');
+      const castName = document.createElement('h5');
+      const characterName = document.createElement('p');
+
+      castContainer.append(personArticle);
+      personArticle.append(personImg, castNameDiv);
+      castNameDiv.append(castName, characterName);
+
+      imgUrlPathPerson = person.profile_path;
+      
+      castName.innerText =  person.name;
+      characterName.innerText =  person.character;
+      personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
+
+      if (imgUrlPathPerson == null){
+        personImg.src = './img/no-image.jpg';
+      }
+      else{
+        personImg.src = imgScrBase+fileSize+imgUrlPathPerson;
+      }
+      personArticle.setAttribute("id", person.id);
+    }
+
+
+      /****** Seasons  ******/
+
+      const seasons = tvSeries.seasons;
+
+      const seasonsDiv = document.createElement('div');
+      const seasonsHeader = document.createElement('h4');
+      seasonsHeader.innerText = 'Seasons';
+      tvDetailsContainer.append(seasonsDiv);
+      seasonsDiv.classList.add('movieCast');
+
+      const seasonContainer = document.createElement('div');
+
+      seasonContainer.classList.add('castContainer');
+    
+      seasonsDiv.append(seasonsHeader, seasonContainer);
+      
+      fileSize = 'w185';
+      let imgUrlPathSeason = '';
+      for (const season of seasons){
+        const seasonArticle = document.createElement('article');
+        seasonArticle.classList.add("seasonArticle");
+      
+        const seasonImg = document.createElement('img');
+        const seasonNameDiv = document.createElement('div');
+        const seasonName = document.createElement('h5');
+        const episodeCount = document.createElement('p');
+
+        seasonContainer.append(seasonArticle);
+        seasonArticle.append(seasonImg, seasonNameDiv);
+        seasonNameDiv.append(seasonName, episodeCount);
+
+        imgUrlPathSeason = season.poster_path;
+        
+        seasonName.innerText =  season.name;
+        episodeCount.innerText = 'Episodes: ' + season.episode_count;
+        seasonImg.src = imgScrBase+fileSize+imgUrlPathSeason;
+
+        if (imgUrlPathSeason == null){
+          seasonImg.src = './img/no-image.jpg';
+        }
+        else{
+          seasonImg.src = imgScrBase+fileSize+imgUrlPathSeason;
+        }
+        // personDiv.setAttribute("id", person.id);
+      }
+
+  
+
 }
 
 
@@ -492,7 +663,7 @@ function displayError(error) {
 
 
 
-export{topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson,displayTrendingMovies, removePrevLists , displayMovieDetails, displayPersonDetails, displayError};
+export{topRatedBtnImg, popularBtnImg, displayMovieList, displayMovieorPerson,displayTrendingMovies, removePrevLists , displayMovieDetails, displayPersonDetails, displayTVDetails, displayError};
 
   
 

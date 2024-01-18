@@ -294,7 +294,7 @@ header{
 
 
 
-/************* DETAILS  MOVIE   **************/
+/************* DETAILS  MOVIE **************/
 
 #movieDetailsContainer{
   display:flex;
@@ -307,6 +307,7 @@ header{
 .movieInfo{
   display:flex;
   gap:25px;
+  width:100%;
 } 
 
 
@@ -331,15 +332,13 @@ header{
   gap:10px;
 }
 
-
 .movieInfo > div:first-child {
-  width:49.5%;
+  width:45%;
 }
 
-
 .movieInfo > div:nth-child(2) {
-  width:48%;
-  margin-top: 15px;
+  width:52%;
+  margin: 15px 0 4px 0;
   padding-right:15px;
   display: flex;
   flex-direction: column;
@@ -368,14 +367,16 @@ header{
 
 
 /***** Cast *****/
+
 .movieCast {
   border-top:1px solid #ccc;
 }
 .castContainer  {
   display: flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:30px;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+  gap:8px;
+  padding:15px;
 }
 
 .castContainer2 {
@@ -398,9 +399,98 @@ header{
   margin:5px 0 10px 0;
 }
 
-.castContainer .personArticle img{
-  max-width: 185px;
+.castContainer article{
+  max-width: 155px;
+  cursor: pointer;
+  background-color:#D0CFCE;
+  background-color:#e4e2e2;
+  background-color:#e1ece9;
 }
+.castContainer article:hover{
+  opacity: 75;
+}
+.castContainer article > div{
+  padding:3px 8px 0 8px;
+}
+.castContainer article > div h5{
+  white-space: wrap;
+}
+
+
+/*************  DETAILS - TV  **************/
+
+
+#tvSeriesDetailsContainer{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  gap:15px;
+  background-color: #f0f4f4;
+}
+
+.tvInfo{
+  display:flex;
+  gap:25px;
+  width:100%;
+} 
+
+
+.factsContainer{
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  gap:10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin:0 0 10px 0;
+}
+
+.tvInfo p {
+  margin:1em 0 1em 0;
+}
+
+.genresContainer{
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  gap:10px;
+}
+
+.tvInfo > div:first-child {
+  width:45%;
+}
+
+.tvInfo > div:nth-child(2) {
+  width:52%;
+  margin: 15px 0 4px 0;
+  padding-right:15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tvInfo h4{
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 300;
+  font-style:italic;
+  margin-bottom:20px;
+}
+.tvInfo h5{
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 300;
+  font-style:italic;
+}
+.tvInfo h6{
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 300;
+  text-align: left;
+}
+
+
+
 
 /*************  DETAILS - PERSON  **************/
 
