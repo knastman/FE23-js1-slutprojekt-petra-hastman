@@ -143,6 +143,8 @@ header{
 #startGrid article {
   width: 15vw;
   flex-grow: 1;
+  cursor:pointer;
+  
 }
 #startGrid article img{
   max-height: 100%;

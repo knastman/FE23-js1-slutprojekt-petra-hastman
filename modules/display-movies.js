@@ -141,12 +141,10 @@ function displayMovieorPerson(movieOrPerson){
     let articleHeaderTitle = '';
     let imgUrlPath = '';
   
-    const mediaType = movie.media_type;
-  
-    
     const id = movie.id;
     resultArticle.setAttribute("id", id);
-    
+
+    const mediaType = movie.media_type;
     
     if ((mediaType == 'movie')||(mediaType == 'tv')) {
       const movieId = movie.id;
@@ -213,7 +211,6 @@ function displayMovieorPerson(movieOrPerson){
     if (imgUrlPath != null){
       articleImage.src = imgScrBase+fileSize+imgUrlPath; 
     }
-
     articleHeader.innerText = articleHeaderTitle;
   }
 }
