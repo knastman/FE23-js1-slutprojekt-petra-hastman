@@ -87,7 +87,6 @@ function changePage(event){
     .catch(displayError);
 }
 
-
 const movieListContainer = document.querySelector('#movieListContainer');
 const startGrid = document.querySelector('#startGrid');
 const resultContainer = document.querySelector('#resultContainer');
