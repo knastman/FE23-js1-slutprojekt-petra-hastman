@@ -1,4 +1,4 @@
-## Slutprojekt - JavaScript 1 - The Movie DataBase
+# Slutprojekt - JavaScript 1 - The Movie DataBase
 
 #### Projekt på utbildningen:
 [Front end webbutvecklare](https://gritacademy.se/front-end-webbutvecklare/) 400 YH-poäng - [Grit Academy](https://gritacademy.se/)  
@@ -9,7 +9,7 @@ FE23 | HTML & CSS
 
 ---
 
-# Uppgiften
+## Uppgiften
 
 Du ska skapa en webbsida med hjälp av The Movie DataBase där man kan se vilka filmer som är högst rankade och mest populära just nu. Man ska även kunna söka på en film eller en person för att se mer information om den. Som en väldigt förenklad version av IMdB. 
 
