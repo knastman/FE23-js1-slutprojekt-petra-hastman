@@ -46,8 +46,8 @@ Listor med filmer ska visa 10 stycken där varje film ska visa
 
 ### Koden
 Du behöver använda
-* the Movie DataBase API:et. Se instruktioner här.
-* minst ett JavaScript-bibliotek. Du väljer själv vilket. Det kan vara något av de 3 som vi gått igenom under kursen eller något helt nytt.
+* The Movie DataBase API:et. Se instruktioner här.
+* Minst ett JavaScript-bibliotek. Du väljer själv vilket. Det kan vara något av de 3 som vi gått igenom under kursen eller något helt nytt.
 * JavaScript på ett lämpligt sätt som du har lärt dig under kursen.
 * Form och inputs på korrekt sätt.
 * Rule of separation. Dvs ingen JS eller CSS i html-filer. I JS-filerna, behöver du ändra stylingen på något element, använder du dig av klasser och definierar klassernas stilregler i CSS-filer.
