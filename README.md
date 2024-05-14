@@ -13,10 +13,10 @@ FE23 | HTML & CSS
 
 Du ska skapa en webbsida med hjälp av The Movie DataBase där man kan se vilka filmer som är högst rankade och mest populära just nu. Man ska även kunna söka på en film eller en person för att se mer information om den. Som en väldigt förenklad version av IMdB. 
 
-## Krav
-### Webbsidan
+### Krav
+#### Webbsidan
 
-#### Användare ska minst kunna
+##### Användare ska minst kunna
 * Välja att se en lista med de tio högst rankade filmerna just nu. (Top rated)
 * Välja att se en lista med de tio mest populära filmerna just nu. (Popular)
 * Söka på en person eller en film med fri text. (Movie / Person)
@@ -44,7 +44,7 @@ Listor med filmer ska visa 10 stycken där varje film ska visa
 * Om användaren kan göra någonting åt felet ska användaren bli meddelad om detta. 
 * Vid alla andra error räcker det med att användaren får veta att något gått fel.
 
-### Koden
+#### Koden
 Du behöver använda
 * The Movie DataBase API:et. Se instruktioner här.
 * Minst ett JavaScript-bibliotek. Du väljer själv vilket. Det kan vara något av de 3 som vi gått igenom under kursen eller något helt nytt.
