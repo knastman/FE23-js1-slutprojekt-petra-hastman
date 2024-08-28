@@ -5,7 +5,7 @@
 (2023-2025)
 
 #### Kurs
-FE23 | HTML & CSS
+FE23 | JavaSript 1
 
 ---
 
